@@ -1,3 +1,13 @@
+// 主题类型
+export type Theme = 'light' | 'dark' | 'system';
+
+export interface ThemeProviderProps {
+  children: React.ReactNode;
+  defaultTheme?: Theme;
+  enableSystem?: boolean;
+  disableTransitionOnChange?: boolean;
+}
+
 // 全局类型定义
 export type { Metadata } from 'next';
 export type { ReactNode } from 'react';
