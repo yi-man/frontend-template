@@ -13,6 +13,7 @@
 ## 工作目录
 
 **所有任务都在以下目录执行：**
+
 ```
 /Users/xxwade/mine/claude-code-projects/frontend-template
 ```
@@ -36,6 +37,7 @@
 ## Task 1: 项目初始化和 Git 配置
 
 **Files:**
+
 - Create: `.gitignore`
 - Create: `.gitattributes`
 - Execute: `git init`
@@ -43,15 +45,18 @@
 **Step 1: 初始化 Git 仓库**
 
 Run:
+
 ```bash
 git init
 git checkout -b main
 ```
+
 Expected: Git 仓库初始化成功，当前在 main 分支
 
 **Step 2: 创建 .gitignore**
 
 Create: `.gitignore`
+
 ```gitignore
 # Dependencies
 node_modules
@@ -127,6 +132,7 @@ cypress/videos
 **Step 3: 创建 .gitattributes**
 
 Create: `.gitattributes`
+
 ```gitattributes
 # Auto detect text files and perform LF normalization
 * text=auto
@@ -176,10 +182,12 @@ Create: `.gitattributes`
 **Step 4: 首次提交**
 
 Run:
+
 ```bash
 git add .gitignore .gitattributes
 git commit -m "chore: initialize git repository with gitignore"
 ```
+
 Expected: 提交成功，包含 gitignore 和 gitattributes
 
 ---
@@ -187,6 +195,7 @@ Expected: 提交成功，包含 gitignore 和 gitattributes
 ## Task 2: 初始化 Next.js 16 项目
 
 **Files:**
+
 - Execute: `pnpm create next-app` 等效命令
 - Create: `package.json`
 - Create: `next.config.ts`
@@ -194,6 +203,7 @@ Expected: 提交成功，包含 gitignore 和 gitattributes
 **Step 1: 创建 package.json**
 
 Create: `package.json`
+
 ```json
 {
   "name": "nextjs16-ssr-template",
@@ -281,14 +291,17 @@ Create: `package.json`
 **Step 2: 安装依赖**
 
 Run:
+
 ```bash
 pnpm install
 ```
+
 Expected: 所有依赖安装成功，出现 `node_modules` 目录
 
 **Step 3: 创建 next.config.ts**
 
 Create: `next.config.ts`
+
 ```typescript
 import type { NextConfig } from 'next';
 
@@ -334,6 +347,7 @@ export default nextConfig;
 **Step 4: 提交**
 
 Run:
+
 ```bash
 git add package.json pnpm-lock.yaml next.config.ts
 
@@ -351,6 +365,7 @@ git commit -m "chore: initialize Next.js 16 project with dependencies
 ## Task 3: TypeScript 配置
 
 **Files:**
+
 - Create: `tsconfig.json`
 - Create: `next-env.d.ts`
 - Create: `src/types/index.ts`
@@ -358,6 +373,7 @@ git commit -m "chore: initialize Next.js 16 project with dependencies
 **Step 1: 创建 tsconfig.json**
 
 Create: `tsconfig.json`
+
 ```json
 {
   "compilerOptions": {
@@ -396,6 +412,7 @@ Create: `tsconfig.json`
 **Step 2: 创建 next-env.d.ts**
 
 Create: `next-env.d.ts`
+
 ```typescript
 /// <reference types="next" />
 /// <reference types="next/image-types/global" />
@@ -407,6 +424,7 @@ Create: `next-env.d.ts`
 **Step 3: 创建基础类型定义**
 
 Create: `src/types/index.ts`
+
 ```typescript
 /**
  * 全局类型定义
@@ -529,6 +547,7 @@ export interface DefaultProps extends ChildrenProps, ClassNameProps {}
 **Step 4: 提交**
 
 Run:
+
 ```bash
 git add tsconfig.json next-env.d.ts src/types/index.ts
 git commit -m "chore: configure TypeScript with path aliases and base types"
@@ -539,6 +558,7 @@ git commit -m "chore: configure TypeScript with path aliases and base types"
 ## Task 4: Tailwind CSS 和 PostCSS 配置
 
 **Files:**
+
 - Create: `postcss.config.mjs`
 - Create: `src/app/globals.css`
 - Modify: `src/app/layout.tsx` (后续创建)
@@ -546,6 +566,7 @@ git commit -m "chore: configure TypeScript with path aliases and base types"
 **Step 1: 创建 PostCSS 配置**
 
 Create: `postcss.config.mjs`
+
 ```javascript
 /** @type {import('postcss-load-config').Config} */
 const config = {
@@ -560,8 +581,9 @@ export default config;
 **Step 2: 创建全局样式**
 
 Create: `src/app/globals.css`
+
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* 颜色系统 - 浅色主题 */
@@ -622,13 +644,25 @@ Create: `src/app/globals.css`
   --animate-out: animateOut 0.2s ease-in;
 
   @keyframes animateIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes animateOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(10px); }
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
   }
 }
 
@@ -645,7 +679,9 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -769,6 +805,7 @@ pre code {
 **Step 3: 提交**
 
 Run:
+
 ```bash
 git add postcss.config.mjs src/app/globals.css
 git commit -m "chore: configure Tailwind CSS 4 with PostCSS and global styles"
@@ -779,6 +816,7 @@ git commit -m "chore: configure Tailwind CSS 4 with PostCSS and global styles"
 ## Task 5: ESLint 和 Prettier 配置
 
 **Files:**
+
 - Create: `eslint.config.mjs`
 - Create: `.prettierrc`
 - Create: `.prettierignore`
@@ -786,6 +824,7 @@ git commit -m "chore: configure Tailwind CSS 4 with PostCSS and global styles"
 **Step 1: 创建 ESLint 配置**
 
 Create: `eslint.config.mjs`
+
 ```javascript
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -825,6 +864,7 @@ export default eslintConfig;
 **Step 2: 创建 Prettier 配置**
 
 Create: `.prettierrc`
+
 ```json
 {
   "semi": true,
@@ -844,6 +884,7 @@ Create: `.prettierrc`
 ```
 
 Create: `.prettierignore`
+
 ```gitignore
 # Dependencies
 node_modules
@@ -890,6 +931,7 @@ coverage
 **Step 3: 提交**
 
 Run:
+
 ```bash
 git add eslint.config.mjs .prettierrc .prettierignore
 git commit -m "chore: configure ESLint and Prettier with Next.js rules"
@@ -898,6 +940,7 @@ git commit -m "chore: configure ESLint and Prettier with Next.js rules"
 ## Task 6: Husky 和 lint-staged 配置
 
 **Files:**
+
 - Create: `.husky/pre-commit`
 - Create: `.husky/commit-msg`
 - Create: `.lintstagedrc.json`
@@ -906,14 +949,17 @@ git commit -m "chore: configure ESLint and Prettier with Next.js rules"
 **Step 1: 初始化 Husky**
 
 Run:
+
 ```bash
 pnpm exec husky init
 ```
+
 Expected: `.husky/` 目录创建，包含 `pre-commit` 文件
 
 **Step 2: 配置 pre-commit 钩子**
 
 Create: `.husky/pre-commit`
+
 ```bash
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
@@ -938,6 +984,7 @@ echo "✅ Pre-commit checks passed!"
 **Step 3: 创建 commit-msg 钩子**
 
 Create: `.husky/commit-msg`
+
 ```bash
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
@@ -950,24 +997,19 @@ pnpx commitlint --edit "$1"
 **Step 4: 配置 lint-staged**
 
 Create: `.lintstagedrc.json`
+
 ```json
 {
-  "*.{js,jsx,ts,tsx}": [
-    "eslint --fix",
-    "prettier --write"
-  ],
-  "*.{json,md,mdx}": [
-    "prettier --write"
-  ],
-  "*.{css,scss}": [
-    "prettier --write"
-  ]
+  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "*.{json,md,mdx}": ["prettier --write"],
+  "*.{css,scss}": ["prettier --write"]
 }
 ```
 
 **Step 5: 配置 commitlint**
 
 Create: `.commitlintrc.json`
+
 ```json
 {
   "extends": ["@commitlint/config-conventional"],
@@ -975,18 +1017,7 @@ Create: `.commitlintrc.json`
     "type-enum": [
       2,
       "always",
-      [
-        "feat",
-        "fix",
-        "docs",
-        "style",
-        "refactor",
-        "test",
-        "chore",
-        "ci",
-        "perf",
-        "revert"
-      ]
+      ["feat", "fix", "docs", "style", "refactor", "test", "chore", "ci", "perf", "revert"]
     ],
     "type-case": [2, "always", "lower-case"],
     "subject-empty": [2, "never"],
@@ -999,6 +1030,7 @@ Create: `.commitlintrc.json`
 **Step 6: 提交**
 
 Run:
+
 ```bash
 git add .husky/ .lintstagedrc.json .commitlintrc.json
 git commit -m "chore: configure Husky, lint-staged and commitlint"
@@ -1009,6 +1041,7 @@ git commit -m "chore: configure Husky, lint-staged and commitlint"
 ## Task 7: Jest 和 React Testing Library 配置
 
 **Files:**
+
 - Create: `jest.config.ts`
 - Create: `jest.setup.ts`
 - Create: `tests/unit/example.test.tsx`
@@ -1016,6 +1049,7 @@ git commit -m "chore: configure Husky, lint-staged and commitlint"
 **Step 1: 创建 Jest 配置**
 
 Create: `jest.config.ts`
+
 ```typescript
 import type { Config } from 'jest';
 import nextJest from 'next/jest.js';
@@ -1059,11 +1093,7 @@ const config: Config = {
 
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 
-  testPathIgnorePatterns: [
-    '<rootDir>/node_modules/',
-    '<rootDir>/.next/',
-    '<rootDir>/cypress/',
-  ],
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/', '<rootDir>/cypress/'],
 
   clearMocks: true,
 };
@@ -1074,6 +1104,7 @@ export default createJestConfig(config);
 **Step 2: 创建 Jest Setup**
 
 Create: `jest.setup.ts`
+
 ```typescript
 import '@testing-library/jest-dom';
 
@@ -1113,6 +1144,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 **Step 3: 创建示例测试**
 
 Create: `tests/unit/example.test.tsx`
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 
@@ -1131,6 +1163,7 @@ describe('Example Test', () => {
 **Step 4: 提交**
 
 Run:
+
 ```bash
 git add jest.config.ts jest.setup.ts tests/unit/example.test.tsx
 git commit -m "chore: configure Jest and React Testing Library with 90% coverage threshold"
@@ -1141,6 +1174,7 @@ git commit -m "chore: configure Jest and React Testing Library with 90% coverage
 ## Task 8: Cypress 集成测试配置
 
 **Files:**
+
 - Create: `cypress.config.ts`
 - Create: `tests/integration/support/e2e.ts`
 - Create: `tests/integration/support/commands.ts`
@@ -1149,6 +1183,7 @@ git commit -m "chore: configure Jest and React Testing Library with 90% coverage
 **Step 1: 创建 Cypress 配置**
 
 Create: `cypress.config.ts`
+
 ```typescript
 import { defineConfig } from 'cypress';
 
@@ -1182,6 +1217,7 @@ export default defineConfig({
 **Step 2: 创建 Cypress 支持文件**
 
 Create: `tests/integration/support/e2e.ts`
+
 ```typescript
 import './commands';
 
@@ -1196,6 +1232,7 @@ declare global {
 ```
 
 Create: `tests/integration/support/commands.ts`
+
 ```typescript
 Cypress.Commands.add('getByTestId', (testId: string) => {
   return cy.get(`[data-testid="${testId}"]`);
@@ -1209,6 +1246,7 @@ Cypress.Commands.add('checkHydration', () => {
 **Step 3: 创建示例 E2E 测试**
 
 Create: `tests/integration/e2e/home.cy.ts`
+
 ```typescript
 describe('首页', () => {
   beforeEach(() => {
@@ -1239,6 +1277,7 @@ describe('首页', () => {
 **Step 4: 提交**
 
 Run:
+
 ```bash
 git add cypress.config.ts tests/integration/
 git commit -m "chore: configure Cypress for E2E testing"
@@ -1249,6 +1288,7 @@ git commit -m "chore: configure Cypress for E2E testing"
 ## Task 9: shadcn/ui 初始化
 
 **Files:**
+
 - Create: `components.json`
 - Execute: `pnpm dlx shadcn@latest init`
 - Create: `src/lib/utils.ts`
@@ -1257,6 +1297,7 @@ git commit -m "chore: configure Cypress for E2E testing"
 **Step 1: 创建 components.json**
 
 Create: `components.json`
+
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
@@ -1283,6 +1324,7 @@ Create: `components.json`
 **Step 2: 创建工具函数**
 
 Create: `src/lib/utils.ts`
+
 ```typescript
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -1295,6 +1337,7 @@ export function cn(...inputs: ClassValue[]): string {
 **Step 3: 创建 Button 组件**
 
 Create: `src/components/ui/button.tsx`
+
 ```typescript
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
@@ -1353,6 +1396,7 @@ export { Button, buttonVariants };
 **Step 4: 提交**
 
 Run:
+
 ```bash
 git add components.json src/lib/utils.ts src/components/ui/button.tsx
 git commit -m "chore: initialize shadcn/ui with Button component"
@@ -1379,12 +1423,14 @@ git commit -m "chore: initialize shadcn/ui with Button component"
 ## Task 10: 环境变量配置
 
 **Files:**
+
 - Create: `.env.example`
 - Create: `src/lib/env.ts`
 
 **Step 1: 创建环境变量示例文件**
 
 Create: `.env.example`
+
 ```env
 # 应用配置
 NEXT_PUBLIC_APP_NAME="Next.js 16 SSR Template"
@@ -1414,13 +1460,16 @@ NEXT_PUBLIC_ENABLE_DEBUG="false"
 **Step 2: 创建环境变量类型和验证**
 
 Create: `src/lib/env.ts`
+
 ```typescript
 import { z } from 'zod';
 
 const envSchema = z.object({
   // 应用配置
   NEXT_PUBLIC_APP_NAME: z.string().default('Next.js 16 SSR Template'),
-  NEXT_PUBLIC_APP_DESCRIPTION: z.string().default('A modern Next.js 16 SSR template for content websites'),
+  NEXT_PUBLIC_APP_DESCRIPTION: z
+    .string()
+    .default('A modern Next.js 16 SSR template for content websites'),
   NEXT_PUBLIC_APP_URL: z.string().url().default('http://localhost:3000'),
 
   // API 配置
@@ -1466,6 +1515,7 @@ export { env };
 **Step 3: 提交**
 
 Run:
+
 ```bash
 git add .env.example src/lib/env.ts
 git commit -m "chore: add environment variable configuration with validation"
@@ -1476,6 +1526,7 @@ git commit -m "chore: add environment variable configuration with validation"
 ## Task 11: 核心布局组件
 
 **Files:**
+
 - Create: `src/components/layout/ThemeProvider.tsx`
 - Create: `src/components/layout/ThemeToggle.tsx`
 - Create: `src/components/layout/Header.tsx`
@@ -1485,6 +1536,7 @@ git commit -m "chore: add environment variable configuration with validation"
 **Step 1: 创建主题提供者**
 
 Create: `src/components/layout/ThemeProvider.tsx`
+
 ```typescript
 'use client';
 
@@ -1514,6 +1566,7 @@ export function ThemeProvider({
 **Step 2: 创建主题切换组件**
 
 Create: `src/components/layout/ThemeToggle.tsx`
+
 ```typescript
 'use client';
 
@@ -1548,6 +1601,7 @@ export function ThemeToggle() {
 **Step 3: 创建头部组件**
 
 Create: `src/components/layout/Header.tsx`
+
 ```typescript
 import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
@@ -1600,6 +1654,7 @@ export function Header() {
 **Step 4: 创建底部组件**
 
 Create: `src/components/layout/Footer.tsx`
+
 ```typescript
 import Link from 'next/link';
 
@@ -1657,6 +1712,7 @@ export function Footer() {
 **Step 5: 创建根布局**
 
 Create: `src/app/layout.tsx`
+
 ```typescript
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -1721,6 +1777,7 @@ export default function RootLayout({
 **Step 6: 提交**
 
 Run:
+
 ```bash
 git add src/components/layout src/app/layout.tsx
 git commit -m "feat: add core layout components (ThemeProvider, ThemeToggle, Header, Footer)"
@@ -1731,6 +1788,7 @@ git commit -m "feat: add core layout components (ThemeProvider, ThemeToggle, Hea
 ## Task 12: 基础页面
 
 **Files:**
+
 - Create: `src/app/page.tsx` (首页)
 - Create: `src/app/not-found.tsx` (404 页面)
 - Create: `src/app/error.tsx` (错误页面)
@@ -1740,6 +1798,7 @@ git commit -m "feat: add core layout components (ThemeProvider, ThemeToggle, Hea
 **Step 1: 创建首页**
 
 Create: `src/app/page.tsx`
+
 ```typescript
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Layout, Zap } from 'lucide-react';
@@ -1845,6 +1904,7 @@ export default function Home() {
 **Step 2: 创建 404 页面**
 
 Create: `src/app/not-found.tsx`
+
 ```typescript
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -1878,6 +1938,7 @@ export default function NotFound() {
 **Step 3: 创建错误页面**
 
 Create: `src/app/error.tsx`
+
 ```typescript
 'use client';
 
@@ -1930,6 +1991,7 @@ export default function Error({
 **Step 4: 创建加载页面**
 
 Create: `src/app/loading.tsx`
+
 ```typescript
 import { Loader2 } from 'lucide-react';
 
@@ -1946,6 +2008,7 @@ export default function Loading() {
 **Step 5: 创建全局错误页面**
 
 Create: `src/app/global-error.tsx`
+
 ```typescript
 'use client';
 
@@ -2002,6 +2065,7 @@ export default function GlobalError({
 **Step 6: 提交**
 
 Run:
+
 ```bash
 git add src/app/page.tsx src/app/not-found.tsx src/app/error.tsx src/app/loading.tsx src/app/global-error.tsx
 git commit -m "feat: add basic pages (Home, NotFound, Error, Loading)"
@@ -2012,6 +2076,7 @@ git commit -m "feat: add basic pages (Home, NotFound, Error, Loading)"
 ## Task 13: 工具函数和 Hooks
 
 **Files:**
+
 - Create: `src/hooks/useTheme.ts`
 - Create: `src/hooks/useLocalStorage.ts`
 - Create: `src/hooks/useDebounce.ts`
@@ -2023,6 +2088,7 @@ git commit -m "feat: add basic pages (Home, NotFound, Error, Loading)"
 **Step 1: 创建主题 Hook**
 
 Create: `src/hooks/useTheme.ts`
+
 ```typescript
 import { useTheme as useNextTheme } from 'next-themes';
 import type { Theme } from '@/types';
@@ -2052,6 +2118,7 @@ export function useTheme() {
 **Step 2: 创建本地存储 Hook**
 
 Create: `src/hooks/useLocalStorage.ts`
+
 ```typescript
 import { useState, useEffect } from 'react';
 
@@ -2089,6 +2156,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 **Step 3: 创建防抖 Hook**
 
 Create: `src/hooks/useDebounce.ts`
+
 ```typescript
 import { useState, useEffect } from 'react';
 
@@ -2112,6 +2180,7 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
 **Step 4: 创建交集观察器 Hook**
 
 Create: `src/hooks/useIntersectionObserver.ts`
+
 ```typescript
 import { useEffect, useRef, useState } from 'react';
 
@@ -2121,9 +2190,7 @@ interface UseIntersectionObserverOptions {
   rootMargin?: string;
 }
 
-export function useIntersectionObserver(
-  options: UseIntersectionObserverOptions = {}
-) {
+export function useIntersectionObserver(options: UseIntersectionObserverOptions = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
   const ref = useRef<Element | null>(null);
@@ -2138,7 +2205,7 @@ export function useIntersectionObserver(
         threshold: options.threshold ?? 0,
         root: options.root ?? null,
         rootMargin: options.rootMargin ?? '0px',
-      }
+      },
     );
 
     const currentRef = ref.current;
@@ -2161,6 +2228,7 @@ export function useIntersectionObserver(
 **Step 5: 创建通用请求函数**
 
 Create: `src/lib/fetch.ts`
+
 ```typescript
 import axios from 'axios';
 import { env } from '@/lib/env';
@@ -2183,7 +2251,7 @@ apiClient.interceptors.request.use(
   (error) => {
     console.error('API Request Error:', error);
     return Promise.reject(error);
-  }
+  },
 );
 
 apiClient.interceptors.response.use(
@@ -2196,13 +2264,10 @@ apiClient.interceptors.response.use(
   (error) => {
     console.error('API Response Error:', error);
     return Promise.reject(error);
-  }
+  },
 );
 
-export async function fetcher<T = any>(
-  url: string,
-  options?: RequestInit
-): Promise<T> {
+export async function fetcher<T = any>(url: string, options?: RequestInit): Promise<T> {
   try {
     const response = await apiClient.get(url, {
       headers: options?.headers,
@@ -2213,11 +2278,7 @@ export async function fetcher<T = any>(
   }
 }
 
-export async function post<T = any>(
-  url: string,
-  data?: any,
-  options?: RequestInit
-): Promise<T> {
+export async function post<T = any>(url: string, data?: any, options?: RequestInit): Promise<T> {
   try {
     const response = await apiClient.post(url, data, {
       headers: options?.headers,
@@ -2234,6 +2295,7 @@ export { apiClient };
 **Step 6: 创建日期工具函数**
 
 Create: `src/lib/date.ts`
+
 ```typescript
 export function formatDate(date: Date | string): string {
   const d = new Date(date);
@@ -2288,6 +2350,7 @@ export function getReadingTime(text: string): string {
 **Step 7: 创建字符串工具函数**
 
 Create: `src/lib/string.ts`
+
 ```typescript
 export function truncate(text: string, maxLength: number = 100): string {
   if (text.length <= maxLength) {
@@ -2338,6 +2401,7 @@ export function generateRandomString(length: number = 8): string {
 **Step 8: 提交**
 
 Run:
+
 ```bash
 git add src/hooks src/lib/fetch.ts src/lib/date.ts src/lib/string.ts
 git commit -m "chore: add utility functions and custom hooks"
@@ -2348,6 +2412,7 @@ git commit -m "chore: add utility functions and custom hooks"
 ## Task 14: 最终测试和验证
 
 **Files:**
+
 - Create: `tests/unit/components/Header.test.tsx`
 - Create: `tests/unit/components/ThemeToggle.test.tsx`
 - Create: `tests/unit/pages/Home.test.tsx`
@@ -2358,6 +2423,7 @@ git commit -m "chore: add utility functions and custom hooks"
 **Step 1: 创建组件测试**
 
 Create: `tests/unit/components/Header.test.tsx`
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import { Header } from '@/components/layout/Header';
@@ -2386,6 +2452,7 @@ describe('Header', () => {
 **Step 2: 创建主题切换组件测试**
 
 Create: `tests/unit/components/ThemeToggle.test.tsx`
+
 ```typescript
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
@@ -2410,6 +2477,7 @@ describe('ThemeToggle', () => {
 **Step 3: 创建首页测试**
 
 Create: `tests/unit/pages/Home.test.tsx`
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import Home from '@/app/page';
@@ -2440,6 +2508,7 @@ describe('Home', () => {
 **Step 4: 创建布局集成测试**
 
 Create: `tests/integration/e2e/layout.cy.ts`
+
 ```typescript
 describe('布局', () => {
   beforeEach(() => {
@@ -2472,6 +2541,7 @@ describe('布局', () => {
 **Step 5: 运行完整测试套件**
 
 Run:
+
 ```bash
 # 运行单元测试
 pnpm test
@@ -2490,6 +2560,7 @@ pnpm build
 **Step 6: 启动开发服务器验证**
 
 Run:
+
 ```bash
 pnpm dev
 ```
@@ -2499,6 +2570,7 @@ Expected: 服务器在 http://localhost:3000 启动成功
 **Step 7: 提交**
 
 Run:
+
 ```bash
 git add tests/unit/components/Header.test.tsx tests/unit/components/ThemeToggle.test.tsx tests/unit/pages/Home.test.tsx tests/integration/e2e/layout.cy.ts
 git commit -m "test: add comprehensive tests for components and pages"
