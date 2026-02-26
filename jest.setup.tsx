@@ -26,6 +26,13 @@ jest.mock('next-themes', () => ({
   },
 }));
 
+jest.mock('lucide-react', () => ({
+  Menu: () => <div data-testid="menu-icon" />,
+  X: () => <div data-testid="x-icon" />,
+  Sun: () => <div data-testid="sun-icon" />,
+  Moon: () => <div data-testid="moon-icon" />,
+}));
+
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
