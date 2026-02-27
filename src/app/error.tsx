@@ -5,13 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { AlertCircle, ArrowLeft, RefreshCw } from 'lucide-react';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // 记录错误信息
     console.error('应用程序错误:', error);
@@ -57,3 +51,5 @@ export default function Error({
     </div>
   );
 }
+
+export default ErrorPage;
