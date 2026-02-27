@@ -186,4 +186,61 @@ export function formatText(text: string): string {
 - 所有路径别名使用 `@/` 前缀指向 `src/` 目录
 - 组件和工具函数应包含完整的类型定义
 - 测试文件应遵循项目的测试规范
-- 提交前会自动运行 lint 和测试检查
+
+## 代码规范与提交流程
+
+### 自动检查机制
+
+项目配置了完整的自动检查机制，使用 Husky 和 lint-staged：
+
+1. **pre-commit 钩子**：在提交前会自动运行以下检查：
+   - 对暂存文件执行 lint-staged（自动修复 ESLint 错误和格式化代码）
+   - 运行 TypeScript 类型检查
+   - 运行所有单元测试
+
+2. **commit-msg 钩子**：检查提交消息是否符合规范（使用 commitlint）
+
+### pre-commit 钩子内容
+
+```bash
+# 运行 lint-staged（自动修复 ESLint 错误和格式化代码）
+pnpx lint-staged
+
+# 运行 TypeScript 类型检查
+pnpm type-check
+
+# 运行所有单元测试
+pnpm test:ci
+```
+
+### lint-staged 配置
+
+```json
+{
+  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "*.{json,md,mdx}": ["prettier --write"],
+  "*.{css,scss}": ["prettier --write"]
+}
+```
+
+### 提交消息规范
+
+使用 commitlint 检查提交消息是否符合规范，建议使用：
+
+```bash
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**常用 type 类型：**
+
+- `feat`: 新功能
+- `fix`: 修复 bug
+- `docs`: 文档修改
+- `style`: 代码格式化
+- `refactor`: 重构
+- `test`: 测试文件修改
+- `chore`: 其他修改（如构建过程）
