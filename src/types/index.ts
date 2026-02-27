@@ -29,7 +29,7 @@ export type DateOrNull = Date | null;
 
 export type ArrayOrNull<T> = T[] | null;
 
-export type RecordOrNull<T = any> = Record<string, T> | null;
+export type RecordOrNull<T = unknown> = Record<string, T> | null;
 
 export type MaybePromise<T> = T | Promise<T>;
 

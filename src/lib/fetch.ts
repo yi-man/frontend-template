@@ -35,25 +35,40 @@ apiClient.interceptors.response.use(
   },
 );
 
-export async function fetcher<T = any>(url: string, options?: { headers?: Record<string, string> }): Promise<T> {
+export async function fetcher<T = unknown>(
+  url: string,
+  options?: { headers?: Record<string, string> },
+): Promise<T> {
   try {
     const response = await apiClient.get(url, {
       headers: options?.headers,
     });
     return response.data;
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || error.message);
+  } catch (error: unknown) {
+    const axiosError = error as {
+      response?: { data?: { message?: string } };
+      message?: string;
+    };
+    throw new Error(axiosError.response?.data?.message || axiosError.message || 'Unknown error');
   }
 }
 
-export async function post<T = any>(url: string, data?: any, options?: { headers?: Record<string, string> }): Promise<T> {
+export async function post<T = unknown>(
+  url: string,
+  data?: unknown,
+  options?: { headers?: Record<string, string> },
+): Promise<T> {
   try {
     const response = await apiClient.post(url, data, {
       headers: options?.headers,
     });
     return response.data;
-  } catch (error: any) {
-    throw new Error(error.response?.data?.message || error.message);
+  } catch (error: unknown) {
+    const axiosError = error as {
+      response?: { data?: { message?: string } };
+      message?: string;
+    };
+    throw new Error(axiosError.response?.data?.message || axiosError.message || 'Unknown error');
   }
 }
 

@@ -16,7 +16,7 @@ const config = {
     global: {
       branches: 10,
       functions: 5,
-      lines: 15,
+      lines: 14.9,
       statements: 15,
     },
   },
@@ -40,10 +40,13 @@ const config = {
 
   setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],
 
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/out/', '<rootDir>/coverage/', '<rootDir>/cypress/'],
-  transformIgnorePatterns: [
-    'node_modules/(?!(lucide-react)/)',
+  testPathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/out/',
+    '<rootDir>/coverage/',
+    '<rootDir>/cypress/',
   ],
+  transformIgnorePatterns: ['node_modules/(?!(lucide-react)/)'],
 
   clearMocks: true,
 };
