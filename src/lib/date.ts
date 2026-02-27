@@ -1,5 +1,8 @@
 export function formatDate(date: Date | string): string {
   const d = new Date(date);
+  if (isNaN(d.getTime())) {
+    return '';
+  }
   return new Intl.DateTimeFormat('zh-CN', {
     year: 'numeric',
     month: 'long',
@@ -42,7 +45,10 @@ export function formatDateForSEO(date: Date | string): string {
 
 export function getReadingTime(text: string): string {
   const wordsPerMinute = 200;
-  const wordCount = text.split(/\s+/).length;
+  const wordCount = text
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0).length;
   const minutes = Math.ceil(wordCount / wordsPerMinute);
   return `${minutes} 分钟阅读`;
 }
