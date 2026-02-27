@@ -24,6 +24,7 @@ jest.mock('next-themes', () => ({
       setTheme: jest.fn(),
     };
   },
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
 jest.mock('lucide-react', () => ({
@@ -38,6 +39,7 @@ jest.mock('lucide-react', () => ({
   Circle: () => <div data-testid="circle-icon" />,
   ChevronDown: () => <div data-testid="chevron-down-icon" />,
   ChevronUp: () => <div data-testid="chevron-up-icon" />,
+  Loader2: () => <div data-testid="loader2-icon" />,
 }));
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({

@@ -1,34 +1,22 @@
-import fs from 'fs';
-import path from 'path';
+import { render, screen } from '@testing-library/react';
+import Loading from './loading';
 
-// 直接读取组件内容进行测试
-describe('Loading component', () => {
-  it('renders loading text', async () => {
-    const componentPath = path.join(__dirname, 'loading.tsx');
-    const componentContent = fs.readFileSync(componentPath, 'utf8');
-
-    expect(componentContent).toContain('正在加载');
+describe('Loading', () => {
+  it('renders loading indicator', () => {
+    render(<Loading />);
+    expect(screen.getByText('正在加载')).toBeInTheDocument();
+    expect(screen.getByText('请稍候，我们正在为您准备内容...')).toBeInTheDocument();
   });
 
-  it('renders loading description', async () => {
-    const componentPath = path.join(__dirname, 'loading.tsx');
-    const componentContent = fs.readFileSync(componentPath, 'utf8');
-
-    expect(componentContent).toContain('请稍候，我们正在为您准备内容');
+  it('renders spinning loader', () => {
+    render(<Loading />);
+    const spinner = screen.getByTestId('loader2-icon');
+    expect(spinner).toBeInTheDocument();
   });
 
-  it('renders with correct container classes', async () => {
-    const componentPath = path.join(__dirname, 'loading.tsx');
-    const componentContent = fs.readFileSync(componentPath, 'utf8');
-
-    expect(componentContent).toContain('container-custom');
-  });
-
-  it('renders loader icon', async () => {
-    const componentPath = path.join(__dirname, 'loading.tsx');
-    const componentContent = fs.readFileSync(componentPath, 'utf8');
-
-    expect(componentContent).toContain('Loader2');
-    expect(componentContent).toContain('animate-spin');
+  it('renders container with correct styling', () => {
+    render(<Loading />);
+    const container = document.querySelector('.container-custom');
+    expect(container).toBeInTheDocument();
   });
 });
