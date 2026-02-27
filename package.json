@@ -109,7 +109,6 @@
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "puppeteer": "^24.37.5",
     "start-server-and-test": "^2.0.10",
     "tailwindcss": "^4.1.18",
     "ts-node": "^10.9.2",
