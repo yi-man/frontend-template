@@ -30,19 +30,21 @@ const envSchema = z.object({
 
 type Env = z.infer<typeof envSchema>;
 
-let env: Env;
+// 解析环境变量的函数
+export function parseEnv(input: Partial<NodeJS.ProcessEnv> = process.env): Env {
+  try {
+    return envSchema.parse(input);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error('❌ Invalid environment variables:', error.issues);
+    } else {
+      console.error('❌ Failed to parse environment variables:', error);
+    }
 
-try {
-  env = envSchema.parse(process.env);
-} catch (error) {
-  if (error instanceof z.ZodError) {
-    console.error('❌ Invalid environment variables:', error.issues);
-  } else {
-    console.error('❌ Failed to parse environment variables:', error);
+    // 使用默认值
+    return envSchema.parse({});
   }
-
-  // 使用默认值
-  env = envSchema.parse({});
 }
 
-export { env };
+// 导出解析后的环境变量
+export const env = parseEnv();
