@@ -76,6 +76,12 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@cypress/webpack-preprocessor": "^6.0.2",
@@ -106,6 +112,7 @@
     "start-server-and-test": "^2.0.10",
     "tailwindcss": "^4.1.18",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.3"
   },
   "engines": {
