@@ -1,6 +1,18 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Navbar } from './navbar';
 
+// 模拟 lucide-react 图标
+jest.mock('lucide-react', () => ({
+  Menu: jest.fn(() => <div data-testid="menu-icon" />),
+  X: jest.fn(() => <div data-testid="x-icon" />),
+  Github: jest.fn(() => <div data-testid="github-icon" />),
+}));
+
+// 模拟 ThemeToggle 组件
+jest.mock('@/components/ui/theme-toggle', () => ({
+  ThemeToggle: jest.fn(() => <button data-testid="theme-toggle-button">Toggle theme</button>),
+}));
+
 describe('Navbar component', () => {
   it('renders logo and main navigation links', () => {
     render(<Navbar />);

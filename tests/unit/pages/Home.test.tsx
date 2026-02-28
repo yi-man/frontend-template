@@ -4,30 +4,45 @@ import Home from '@/app/page';
 describe('Home', () => {
   it('应该显示页面标题', () => {
     render(<Home />);
-    expect(screen.getByText(/Next\.js 16 SSR Template/)).toBeInTheDocument();
+    const h1 = screen.getByRole('heading', { level: 1 });
+    expect(h1).toBeInTheDocument();
+    expect(h1.textContent).toContain('构建现代化Web 应用');
   });
 
-  it('应该显示技术栈信息', () => {
+  it('应该显示快速开始按钮', () => {
     render(<Home />);
-    expect(screen.getByText(/Next\.js 16 App Router/)).toBeInTheDocument();
-    expect(screen.getByText(/React 19/)).toBeInTheDocument();
-    expect(screen.getByText(/TypeScript 5\.7/)).toBeInTheDocument();
-    expect(screen.getByText(/Tailwind CSS 4/)).toBeInTheDocument();
-    expect(screen.getByText(/shadcn\/ui 3\.8/)).toBeInTheDocument();
+    const buttons = screen.getAllByText(/快速开始/);
+    const button = buttons.find((el) => el.tagName === 'BUTTON');
+    expect(button).toBeInTheDocument();
   });
 
-  it('应该显示功能特性', () => {
+  it('应该显示功能特性卡片', () => {
     render(<Home />);
-    expect(screen.getByText(/服务端渲染 \(SSR\)/)).toBeInTheDocument();
-    expect(screen.getByText(/深色\/浅色主题切换/)).toBeInTheDocument();
-    expect(screen.getByText(/完整的代码规范流程/)).toBeInTheDocument();
-    expect(screen.getByText(/测试配置 \(Jest \+ Cypress\)/)).toBeInTheDocument();
-    // 找到所有包含 "工程化配置" 的元素，然后验证至少有一个在功能特性卡片中
-    const elements = screen.getAllByText(/工程化配置/);
-    expect(elements.length).toBeGreaterThan(0);
-    // 验证至少有一个元素在功能特性卡片中
-    const featuresCard = screen.getByText(/功能特性/).closest('.bg-card');
-    expect(featuresCard).toBeInTheDocument();
-    expect(featuresCard?.textContent).toContain('工程化配置');
+    expect(screen.getByText(/强大的功能特性/)).toBeInTheDocument();
+    expect(screen.getAllByText(/极速开发/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/完整技术栈/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/精美设计/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/代码规范/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/工程化配置/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/版本控制/).length).toBeGreaterThan(0);
+  });
+
+  it('应该显示快速开始代码示例', () => {
+    render(<Home />);
+    expect(screen.getByText(/安装依赖/)).toBeInTheDocument();
+    expect(screen.getByText(/启动开发服务器/)).toBeInTheDocument();
+    expect(screen.getByText(/构建生产版本/)).toBeInTheDocument();
+  });
+
+  it('应该显示项目架构信息', () => {
+    render(<Home />);
+    const projectArchitecture = screen.getByText(/项目架构/).closest('.bg-card');
+    expect(projectArchitecture).toBeInTheDocument();
+    expect(projectArchitecture?.textContent).toContain('App Router');
+    expect(projectArchitecture?.textContent).toContain('Server Components');
+    expect(projectArchitecture?.textContent).toContain('TypeScript');
+    expect(projectArchitecture?.textContent).toContain('Tailwind CSS');
+    expect(projectArchitecture?.textContent).toContain('shadcn/ui');
+    expect(projectArchitecture?.textContent).toContain('Jest + Cypress');
   });
 });
