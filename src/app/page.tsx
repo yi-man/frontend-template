@@ -4,29 +4,24 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-24 sm:py-32 lg:py-40">
+      <section className="py-20 sm:py-28 lg:py-36">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-blue-600">
-              <span className="inline-block h-2 w-2 rounded-full bg-blue-600" />
-              全新 Next.js 16 模板
-            </div>
-
-            <h1 className="mb-8 text-5xl leading-tight font-bold tracking-tight sm:text-6xl lg:text-7xl">
-              构建<span className="text-blue-600">现代化</span>Web 应用
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mb-6 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              构建<span className="text-primary">现代化</span>Web 应用
             </h1>
 
-            <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-gray-600 sm:text-xl">
+            <p className="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg leading-relaxed sm:text-xl">
               一个生产就绪的 Next.js 16 SSR
               模板，集成完整的技术栈和工程化配置，让您快速启动高质量项目
             </p>
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-blue-700">
+              <button className="bg-primary text-primary-foreground inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-semibold transition-all duration-300 hover:opacity-90">
                 快速开始
                 <span className="ml-2">→</span>
               </button>
-              <button className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:bg-gray-50">
+              <button className="border-input bg-background hover:bg-accent inline-flex items-center justify-center rounded-lg border px-8 py-3 text-base font-semibold transition-all duration-300">
                 查看文档
               </button>
             </div>
@@ -39,7 +34,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mb-20 text-center">
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl">强大的功能特性</h2>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
+            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
               集成现代 Web 开发最佳实践，提供完整的开发、测试和部署流程
             </p>
           </div>
@@ -77,19 +72,19 @@ export default function Home() {
                 features: ['提交规范', '分支管理', '代码评审', '自动化检查'],
               },
             ].map((feature, index) => (
-              <Card key={index} className="group transition-all duration-300 hover:shadow-md">
+              <Card key={index} className="group transition-all duration-300 hover:shadow-sm">
                 <CardHeader className="pb-4">
-                  <div className="mb-4 inline-flex rounded-lg bg-blue-50 p-3 transition-colors group-hover:bg-blue-100">
-                    <span className="text-2xl font-bold text-blue-600">✦</span>
+                  <div className="bg-primary/10 group-hover:bg-primary/20 mb-4 inline-flex rounded-lg p-3 transition-colors">
+                    <span className="text-primary text-2xl font-bold">✦</span>
                   </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
                   <CardDescription>{feature.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {feature.features.map((item, i) => (
-                      <li key={i} className="flex items-center text-sm text-gray-600">
-                        <span className="mr-2 text-blue-600">✓</span>
+                      <li key={i} className="text-muted-foreground flex items-center text-sm">
+                        <span className="text-primary mr-2">✓</span>
                         {item}
                       </li>
                     ))}
@@ -102,79 +97,60 @@ export default function Home() {
       </section>
 
       {/* Code Examples Section */}
-      <section className="bg-gray-50 py-24">
+      <section className="bg-muted/50 py-24">
         <div className="container mx-auto px-4">
           <div className="mb-20 text-center">
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl">快速开始</h2>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
+            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
               简单几步，即可开始开发您的应用
             </p>
           </div>
 
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="space-y-8">
-              <div className="rounded-lg border bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="text-xl text-blue-600">⚡</span>
-                  <h3 className="text-lg font-semibold">安装依赖</h3>
+              {[
+                { title: '安装依赖', code: 'pnpm install' },
+                { title: '启动开发服务器', code: 'pnpm dev' },
+                { title: '构建生产版本', code: 'pnpm build' },
+              ].map((step, index) => (
+                <div
+                  key={index}
+                  className="bg-card rounded-lg border p-6 shadow-sm transition-shadow hover:shadow-sm"
+                >
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="text-primary text-xl">⚡</span>
+                    <h3 className="text-lg font-semibold">{step.title}</h3>
+                  </div>
+                  <div className="bg-muted overflow-x-auto rounded-lg p-3 font-mono text-sm">
+                    <code>{step.code}</code>
+                  </div>
                 </div>
-                <div className="overflow-x-auto rounded-lg bg-gray-50 p-4 font-mono text-sm">
-                  <code>pnpm install</code>
-                </div>
-              </div>
-
-              <div className="rounded-lg border bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="text-xl text-blue-600">⚡</span>
-                  <h3 className="text-lg font-semibold">启动开发服务器</h3>
-                </div>
-                <div className="overflow-x-auto rounded-lg bg-gray-50 p-4 font-mono text-sm">
-                  <code>pnpm dev</code>
-                </div>
-              </div>
-
-              <div className="rounded-lg border bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="text-xl text-blue-600">⚡</span>
-                  <h3 className="text-lg font-semibold">构建生产版本</h3>
-                </div>
-                <div className="overflow-x-auto rounded-lg bg-gray-50 p-4 font-mono text-sm">
-                  <code>pnpm build</code>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <div className="rounded-lg border bg-white p-8 shadow-sm">
+            <div className="bg-card rounded-lg border p-6 shadow-sm">
               <div className="mb-6 flex items-center gap-3">
-                <span className="text-2xl text-blue-600">📁</span>
+                <span className="text-primary text-2xl">📁</span>
                 <h3 className="text-xl font-semibold">项目架构</h3>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
-                  <span className="font-medium">App Router</span>
-                  <span className="text-sm text-gray-600">现代化路由系统</span>
-                </div>
-                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
-                  <span className="font-medium">Server Components</span>
-                  <span className="text-sm text-gray-600">服务端组件</span>
-                </div>
-                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
-                  <span className="font-medium">TypeScript</span>
-                  <span className="text-sm text-gray-600">类型安全</span>
-                </div>
-                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
-                  <span className="font-medium">Tailwind CSS</span>
-                  <span className="text-sm text-gray-600">响应式设计</span>
-                </div>
-                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
-                  <span className="font-medium">shadcn/ui</span>
-                  <span className="text-sm text-gray-600">精美组件</span>
-                </div>
-                <div className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
-                  <span className="font-medium">Jest + Cypress</span>
-                  <span className="text-sm text-gray-600">完整测试</span>
-                </div>
+              <div className="space-y-3">
+                {[
+                  { name: 'App Router', description: '现代化路由系统' },
+                  { name: 'Server Components', description: '服务端组件' },
+                  { name: 'TypeScript', description: '类型安全' },
+                  { name: 'Tailwind CSS', description: '响应式设计' },
+                  { name: 'shadcn/ui', description: '精美组件' },
+                  { name: 'Jest + Cypress', description: '完整测试' },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-muted hover:bg-muted/80 flex items-center justify-between rounded-lg p-3 transition-colors"
+                  >
+                    <span className="font-medium">{item.name}</span>
+                    <span className="text-muted-foreground text-sm">{item.description}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -186,10 +162,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mb-6 text-3xl font-bold sm:text-4xl">准备好开始了吗？</h2>
-            <p className="mx-auto mb-10 max-w-2xl text-lg text-gray-600">
+            <p className="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg">
               立即使用这个强大的 Next.js 16 模板，构建您的下一个项目
             </p>
-            <button className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-blue-700">
+            <button className="bg-primary text-primary-foreground inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-semibold transition-all duration-300 hover:opacity-90">
               下载模板
               <span className="ml-2">→</span>
             </button>
