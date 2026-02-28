@@ -30,43 +30,39 @@ export function Navbar() {
     <nav
       className={`fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/95 border-input/50 py-3 backdrop-blur-lg'
-          : 'bg-background/80 border-transparent py-5 backdrop-blur-md'
+          ? 'border-gray-200 bg-white/80 py-2 backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/80'
+          : 'border-transparent bg-white/90 py-3 backdrop-blur-md dark:bg-gray-900/90'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center space-x-3">
-            <div className="relative">
-              <div className="from-primary to-secondary absolute -inset-1 rounded-lg bg-gradient-to-r opacity-75 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200" />
-              <div className="bg-background border-input relative flex h-10 w-10 items-center justify-center rounded-lg border">
-                <span className="text-primary text-lg font-bold">N</span>
-              </div>
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-blue-500 text-white">
+              <span className="text-sm font-bold">N</span>
             </div>
-            <span className="group-hover:text-primary text-xl font-bold tracking-tight transition-colors">
+            <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
               Next.js 16
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center space-x-8 md:flex">
+          <div className="hidden items-center space-x-6 md:flex">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary hover:bg-accent/50 group rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300"
+                className="text-sm font-medium text-gray-600 transition-colors hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 {item.name}
-                <span className="bg-primary block h-0.5 w-0 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
-            <div className="bg-input/50 h-6 w-px" />
+            <div className="h-6 w-px bg-gray-200 dark:bg-gray-800" />
             <Link
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/60 hover:text-primary transition-colors"
+              className="text-gray-500 transition-colors hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
             >
               <Github className="h-5 w-5" />
             </Link>
@@ -78,9 +74,9 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-foreground hover:bg-accent ml-2 rounded-lg p-2 transition-colors"
+              className="ml-2 rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -88,24 +84,24 @@ export function Navbar() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="bg-background/98 animate-in slide-in-from-top-10 border-b backdrop-blur-lg duration-300 md:hidden">
+        <div className="animate-in slide-in-from-top-10 border-b border-gray-200 bg-white/95 backdrop-blur-md duration-300 md:hidden dark:border-gray-800 dark:bg-gray-900/95">
           <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary hover:bg-accent/50 block rounded-lg px-4 py-3 text-base font-medium transition-colors"
+                className="block rounded-md px-4 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-blue-500 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-blue-400"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="border-input/50 my-2 border-t" />
+            <div className="my-2 border-t border-gray-200 dark:border-gray-800" />
             <Link
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/60 hover:text-primary flex items-center px-4 py-3 transition-colors"
+              className="flex items-center px-4 py-3 text-gray-600 transition-colors hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
               onClick={() => setIsMenuOpen(false)}
             >
               <Github className="mr-2 h-5 w-5" />
