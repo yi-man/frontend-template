@@ -84,6 +84,14 @@ export default {
             opacity: '1',
           },
         },
+        'fade-out': {
+          from: {
+            opacity: '1',
+          },
+          to: {
+            opacity: '0',
+          },
+        },
         'slide-in-from-bottom-4': {
           from: {
             transform: 'translateY(16px)',
@@ -134,6 +142,26 @@ export default {
             opacity: '1',
           },
         },
+        'slide-in-from-left-4': {
+          from: {
+            transform: 'translateX(-16px)',
+            opacity: '0',
+          },
+          to: {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+        },
+        'slide-in-from-right-4': {
+          from: {
+            transform: 'translateX(16px)',
+            opacity: '0',
+          },
+          to: {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+        },
         'pulse-slow': {
           '0%, 100%': {
             opacity: '1',
@@ -152,18 +180,30 @@ export default {
             opacity: '0',
           },
         },
+        'bounce-subtle': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-4px)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.6s ease-out',
+        'fade-out': 'fade-out 0.6s ease-out',
         'slide-in-from-bottom-4': 'slide-in-from-bottom-4 0.6s ease-out',
         'slide-in-from-bottom-6': 'slide-in-from-bottom-6 0.6s ease-out',
         'slide-in-from-bottom-8': 'slide-in-from-bottom-8 0.6s ease-out',
         'slide-in-from-bottom-10': 'slide-in-from-bottom-10 0.6s ease-out',
         'slide-in-from-top-10': 'slide-in-from-top-10 0.6s ease-out',
+        'slide-in-from-left-4': 'slide-in-from-left-4 0.6s ease-out',
+        'slide-in-from-right-4': 'slide-in-from-right-4 0.6s ease-out',
         'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'ping-slow': 'ping-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'bounce-subtle': 'bounce-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },
