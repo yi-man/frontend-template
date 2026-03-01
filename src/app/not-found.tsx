@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui';
 import { ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="container-custom flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
+    <div className="container mx-auto flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
       <div className="w-full max-w-md space-y-8">
         <div className="space-y-4">
           <div className="bg-primary/10 text-primary inline-flex h-20 w-20 items-center justify-center rounded-full">
@@ -17,13 +17,13 @@ export default function NotFound() {
         </div>
 
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <Button asChild size="lg">
+          <Button size="lg">
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
               返回首页
             </Link>
           </Button>
-          <Button asChild variant="secondary" size="lg">
+          <Button variant="light" size="lg">
             <Link href="/contact">联系我们</Link>
           </Button>
         </div>

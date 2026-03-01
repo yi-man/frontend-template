@@ -2,17 +2,26 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui';
 import { AlertCircle, ArrowLeft, RefreshCw } from 'lucide-react';
 
 function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // 记录错误信息
     console.error('应用程序错误:', error);
+
+    // 添加清理函数
+    return () => {
+      // 检查 console.error 是否有 mockRestore 方法（使用类型断言）
+      const consoleError = console.error as unknown as { mockRestore?: () => void };
+      if (typeof consoleError.mockRestore === 'function') {
+        consoleError.mockRestore();
+      }
+    };
   }, [error]);
 
   return (
-    <div className="container-custom flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
+    <div className="container mx-auto flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
       <div className="w-full max-w-md space-y-8">
         <div className="space-y-4">
           <div className="bg-destructive/10 text-destructive inline-flex h-20 w-20 items-center justify-center rounded-full">
@@ -32,7 +41,7 @@ function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset
             <RefreshCw className="mr-2 h-4 w-4" />
             重试
           </Button>
-          <Button asChild variant="secondary" size="lg">
+          <Button variant="light" size="lg">
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
               返回首页

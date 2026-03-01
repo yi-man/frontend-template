@@ -34,6 +34,7 @@ describe('NotFound page', () => {
 
   it('renders with correct container classes', () => {
     const { container } = render(<NotFound />);
-    expect(container.firstChild).toHaveClass('container-custom');
+    expect(container.firstChild).toHaveClass('container');
+    expect(container.firstChild).toHaveClass('mx-auto');
   });
 });

@@ -1,9 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { Card, CardBody, CardHeader, Input, Textarea, Button } from '@/components/ui';
 
 export default function Contact() {
   return (
@@ -17,21 +12,21 @@ export default function Contact() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>联系信息</CardTitle>
-              <CardDescription>我们的联系方式</CardDescription>
+              <h3 className="text-xl font-bold">联系信息</h3>
+              <p className="text-gray-500">我们的联系方式</p>
             </CardHeader>
-            <CardContent>
+            <CardBody>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-medium">邮箱</h3>
+                  <h4 className="font-medium">邮箱</h4>
                   <p className="text-muted-foreground">contact@example.com</p>
                 </div>
                 <div>
-                  <h3 className="font-medium">电话</h3>
+                  <h4 className="font-medium">电话</h4>
                   <p className="text-muted-foreground">+86 123 4567 8900</p>
                 </div>
                 <div>
-                  <h3 className="font-medium">地址</h3>
+                  <h4 className="font-medium">地址</h4>
                   <p className="text-muted-foreground">
                     北京市朝阳区建国路88号
                     <br />
@@ -39,7 +34,7 @@ export default function Contact() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-medium">工作时间</h3>
+                  <h4 className="font-medium">工作时间</h4>
                   <p className="text-muted-foreground">
                     周一至周五: 9:00 - 18:00
                     <br />
@@ -47,41 +42,49 @@ export default function Contact() {
                   </p>
                 </div>
               </div>
-            </CardContent>
+            </CardBody>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>发送消息</CardTitle>
-              <CardDescription>请填写以下表单，我们会尽快回复您。</CardDescription>
+              <h3 className="text-xl font-bold">发送消息</h3>
+              <p className="text-gray-500">请填写以下表单，我们会尽快回复您。</p>
             </CardHeader>
-            <CardContent>
+            <CardBody>
               <form className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">姓名</Label>
+                  <label htmlFor="name" className="text-sm font-medium">
+                    姓名
+                  </label>
                   <Input id="name" placeholder="请输入您的姓名" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">邮箱</Label>
+                  <label htmlFor="email" className="text-sm font-medium">
+                    邮箱
+                  </label>
                   <Input id="email" type="email" placeholder="请输入您的邮箱" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="subject">主题</Label>
+                  <label htmlFor="subject" className="text-sm font-medium">
+                    主题
+                  </label>
                   <Input id="subject" placeholder="请输入消息主题" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="message">消息</Label>
+                  <label htmlFor="message" className="text-sm font-medium">
+                    消息
+                  </label>
                   <Textarea id="message" rows={5} placeholder="请输入您的消息" />
                 </div>
                 <Button type="submit" className="w-full">
                   发送消息
                 </Button>
               </form>
-            </CardContent>
+            </CardBody>
           </Card>
         </div>
 
-        <Separator className="my-12" />
+        <div className="my-12 border-t border-gray-200 dark:border-gray-800" />
 
         <div className="text-center">
           <h2 className="mb-4 text-2xl font-bold">我们的位置</h2>

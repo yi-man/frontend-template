@@ -1,36 +1,33 @@
 import type { Metadata } from 'next';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/sonner';
-import { Navbar } from '@/components/navbar';
 import './globals.css';
+import { Navbar } from '@/components/navbar';
+import { HeroUIProvider } from '@heroui/system';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'Next.js 16 SSR Template',
-  description: 'A modern, production-ready Next.js 16 SSR template',
+  title: 'Next.js 16 SSR 模板',
+  description: '生产就绪的 Next.js 16 SSR 模板',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body>
+      <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="min-h-screen pt-16">{children}</main>
-          <footer className="bg-background border-t py-12">
-            <div className="text-muted-foreground container mx-auto px-4 text-center text-sm">
-              <p>© 2026 Next.js 16 SSR Template. All rights reserved.</p>
-            </div>
-          </footer>
-          <Toaster />
+          <HeroUIProvider>
+            <Navbar />
+            <main className="container mx-auto px-4 pt-24 sm:pt-32">{children}</main>
+            <footer className="bg-background border-t py-12">
+              <div className="text-muted-foreground container mx-auto px-4 text-center text-sm">
+                <p>© 2026 Next.js 16 SSR Template. All rights reserved.</p>
+              </div>
+            </footer>
+          </HeroUIProvider>
         </ThemeProvider>
       </body>
     </html>

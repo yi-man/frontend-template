@@ -13,38 +13,55 @@ jest.mock('@/components/ui/theme-toggle', () => ({
   ThemeToggle: jest.fn(() => <button data-testid="theme-toggle-button">Toggle theme</button>),
 }));
 
-describe('Navbar', () => {
-  it('应该显示 Logo 和标题', () => {
-    render(<Navbar />);
-    expect(screen.getByText(/Next\.js 16/)).toBeInTheDocument();
-  });
+// 模拟 Button 组件
+jest.mock('@/components/ui', () => ({
+  Button: jest.fn(({ children, onClick, ...props }) => (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  )),
+}));
 
-  it('应该显示导航链接', () => {
+describe('Navbar', () => {
+  it('should display logo and main navigation links', () => {
     render(<Navbar />);
+
+    // 检查是否有 logo 或品牌名称
+    expect(screen.getByText('Next.js 16')).toBeInTheDocument();
+
+    // 检查主要导航链接
     expect(screen.getByText('首页')).toBeInTheDocument();
-    expect(screen.getByText('关于')).toBeInTheDocument();
     expect(screen.getByText('服务')).toBeInTheDocument();
     expect(screen.getByText('博客')).toBeInTheDocument();
+    expect(screen.getByText('关于')).toBeInTheDocument();
     expect(screen.getByText('联系')).toBeInTheDocument();
   });
 
-  it('应该包含主题切换按钮', () => {
+  it('should render theme toggle button', () => {
     render(<Navbar />);
-    const buttons = screen.getAllByRole('button', { name: /Toggle theme/i });
-    expect(buttons.length).toBeGreaterThan(0);
+
+    // ThemeToggle 在导航栏中渲染了两次（桌面端和移动端）
+    const themeButtons = screen.getAllByTestId('theme-toggle-button');
+    expect(themeButtons).toHaveLength(2);
+    themeButtons.forEach((button) => {
+      expect(button).toBeInTheDocument();
+    });
   });
 
-  it('应该显示移动端菜单按钮', () => {
+  it('should render mobile menu button', () => {
     render(<Navbar />);
     expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
   });
 
-  it('应该响应菜单按钮点击', () => {
+  it('should open mobile menu when button is clicked', () => {
     render(<Navbar />);
-    const menuButton = document.querySelector('button');
-    fireEvent.click(menuButton!);
-    // 检查菜单是否打开
-    const mobileMenu = document.querySelector('.md\\:hidden');
-    expect(mobileMenu).toBeInTheDocument();
+
+    // 找到菜单按钮（带有 aria-label="菜单" 的按钮）
+    const menuButton = screen.getByRole('button', { name: /菜单/i });
+    fireEvent.click(menuButton);
+
+    // 检查是否显示了移动端菜单（会渲染额外的导航链接）
+    const homeLinks = screen.getAllByText('首页');
+    expect(homeLinks.length).toBe(2);
   });
 });

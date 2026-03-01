@@ -6,4 +6,5 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
   },
+  ignorePatterns: ['package/**'],
 };

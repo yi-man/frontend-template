@@ -1,5 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Card, CardBody, CardHeader } from '@/components/ui';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -101,13 +100,14 @@ const blogPosts = {
 };
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts[params.slug as keyof typeof blogPosts];
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = blogPosts[slug as keyof typeof blogPosts];
 
   if (!post) {
     return (
@@ -149,35 +149,35 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="text-muted-foreground">作者: {post.author}</p>
           </header>
 
-          <Separator className="mb-8" />
+          <div className="my-8 border-t border-gray-200 dark:border-gray-800" />
 
           <div
             className="prose dark:prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
-          <Separator className="my-8" />
+          <div className="my-8 border-t border-gray-200 dark:border-gray-800" />
 
           <div className="text-center">
             <h2 className="mb-4 text-2xl font-bold">相关文章</h2>
             <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
               {Object.entries(blogPosts)
-                .filter(([slug]) => slug !== params.slug)
+                .filter(([blogSlug]) => blogSlug !== slug)
                 .slice(0, 2)
                 .map(([slug, relatedPost]) => (
                   <Link key={slug} href={`/blog/${slug}`}>
                     <Card className="transition-shadow hover:shadow-md">
                       <CardHeader>
-                        <CardTitle className="text-lg">{relatedPost.title}</CardTitle>
-                        <CardDescription>
+                        <h3 className="text-lg font-bold">{relatedPost.title}</h3>
+                        <p className="text-sm text-gray-500">
                           {relatedPost.category} • {relatedPost.date}
-                        </CardDescription>
+                        </p>
                       </CardHeader>
-                      <CardContent>
+                      <CardBody>
                         <p className="text-muted-foreground">
                           {relatedPost.content.substring(0, 150)}...
                         </p>
-                      </CardContent>
+                      </CardBody>
                     </Card>
                   </Link>
                 ))}

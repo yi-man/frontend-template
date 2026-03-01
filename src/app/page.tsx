@@ -1,13 +1,13 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button, Card, CardBody, CardHeader } from '@/components/ui';
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="bg-background text-foreground min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 sm:py-28 lg:py-36">
+      <section className="from-background to-secondary/10 bg-gradient-to-b py-20 sm:py-28 lg:py-36">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-foreground mb-6 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">
               构建<span className="text-primary">现代化</span>Web 应用
             </h1>
 
@@ -17,23 +17,23 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button className="bg-primary text-primary-foreground inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-semibold transition-all duration-300 hover:opacity-90">
+              <Button color="primary" size="lg">
                 快速开始
                 <span className="ml-2">→</span>
-              </button>
-              <button className="border-input bg-background hover:bg-accent inline-flex items-center justify-center rounded-lg border px-8 py-3 text-base font-semibold transition-all duration-300">
+              </Button>
+              <Button variant="bordered" size="lg">
                 查看文档
-              </button>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24">
+      <section className="bg-background py-24">
         <div className="container mx-auto px-4">
           <div className="mb-20 text-center">
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">强大的功能特性</h2>
+            <h2 className="text-foreground mb-4 text-3xl font-bold sm:text-4xl">强大的功能特性</h2>
             <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
               集成现代 Web 开发最佳实践，提供完整的开发、测试和部署流程
             </p>
@@ -49,7 +49,7 @@ export default function Home() {
               {
                 title: '完整技术栈',
                 description: '集成 React 19、TypeScript 5.7 和 Tailwind CSS 4，构建高质量应用',
-                features: ['React 19', 'TypeScript 5.7', 'Tailwind CSS 4', 'shadcn/ui'],
+                features: ['React 19', 'TypeScript 5.7', 'Tailwind CSS 4', 'HeroUI'],
               },
               {
                 title: '精美设计',
@@ -72,15 +72,18 @@ export default function Home() {
                 features: ['提交规范', '分支管理', '代码评审', '自动化检查'],
               },
             ].map((feature, index) => (
-              <Card key={index} className="group transition-all duration-300 hover:shadow-sm">
+              <Card
+                key={index}
+                className="group bg-card text-card-foreground transition-all duration-300 hover:shadow-md"
+              >
                 <CardHeader className="pb-4">
                   <div className="bg-primary/10 group-hover:bg-primary/20 mb-4 inline-flex rounded-lg p-3 transition-colors">
                     <span className="text-primary text-2xl font-bold">✦</span>
                   </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  <CardDescription>{feature.description}</CardDescription>
+                  <h3 className="text-lg font-bold">{feature.title}</h3>
+                  <p className="text-sm text-gray-500">{feature.description}</p>
                 </CardHeader>
-                <CardContent>
+                <CardBody>
                   <ul className="space-y-2">
                     {feature.features.map((item, i) => (
                       <li key={i} className="text-muted-foreground flex items-center text-sm">
@@ -89,7 +92,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                </CardContent>
+                </CardBody>
               </Card>
             ))}
           </div>
@@ -97,7 +100,7 @@ export default function Home() {
       </section>
 
       {/* Code Examples Section */}
-      <section className="bg-muted/50 py-24">
+      <section className="bg-gray-50 py-24 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="mb-20 text-center">
             <h2 className="mb-4 text-3xl font-bold sm:text-4xl">快速开始</h2>
@@ -115,14 +118,14 @@ export default function Home() {
               ].map((step, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-lg border p-6 shadow-sm transition-shadow hover:shadow-sm"
+                  className="bg-card rounded-lg border p-6 shadow-sm transition-shadow hover:shadow-md"
                 >
                   <div className="mb-4 flex items-center gap-3">
                     <span className="text-primary text-xl">⚡</span>
-                    <h3 className="text-lg font-semibold">{step.title}</h3>
+                    <h3 className="text-foreground text-lg font-semibold">{step.title}</h3>
                   </div>
-                  <div className="bg-muted overflow-x-auto rounded-lg p-3 font-mono text-sm">
-                    <code>{step.code}</code>
+                  <div className="overflow-x-auto rounded-lg bg-gray-100 p-3 font-mono text-sm dark:bg-gray-800">
+                    <code className="text-foreground">{step.code}</code>
                   </div>
                 </div>
               ))}
@@ -131,7 +134,7 @@ export default function Home() {
             <div className="bg-card rounded-lg border p-6 shadow-sm">
               <div className="mb-6 flex items-center gap-3">
                 <span className="text-primary text-2xl">📁</span>
-                <h3 className="text-xl font-semibold">项目架构</h3>
+                <h3 className="text-foreground text-xl font-semibold">项目架构</h3>
               </div>
 
               <div className="space-y-3">
@@ -140,15 +143,17 @@ export default function Home() {
                   { name: 'Server Components', description: '服务端组件' },
                   { name: 'TypeScript', description: '类型安全' },
                   { name: 'Tailwind CSS', description: '响应式设计' },
-                  { name: 'shadcn/ui', description: '精美组件' },
+                  { name: 'HeroUI', description: '精美组件' },
                   { name: 'Jest + Cypress', description: '完整测试' },
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="bg-muted hover:bg-muted/80 flex items-center justify-between rounded-lg p-3 transition-colors"
+                    className="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
-                    <span className="font-medium">{item.name}</span>
-                    <span className="text-muted-foreground text-sm">{item.description}</span>
+                    <span className="text-foreground font-medium">{item.name}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {item.description}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -158,17 +163,19 @@ export default function Home() {
       </section>
 
       {/* Footer CTA */}
-      <section className="py-24">
+      <section className="from-background to-secondary/10 bg-gradient-to-t py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-6 text-3xl font-bold sm:text-4xl">准备好开始了吗？</h2>
+            <h2 className="text-foreground mb-6 text-3xl font-bold sm:text-4xl">
+              准备好开始了吗？
+            </h2>
             <p className="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg">
               立即使用这个强大的 Next.js 16 模板，构建您的下一个项目
             </p>
-            <button className="bg-primary text-primary-foreground inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-semibold transition-all duration-300 hover:opacity-90">
+            <Button color="primary" size="lg">
               下载模板
               <span className="ml-2">→</span>
-            </button>
+            </Button>
           </div>
         </div>
       </section>

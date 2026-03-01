@@ -1,27 +1,11 @@
 import type { Config } from 'tailwindcss';
-import tailwindcssAnimate from 'tailwindcss-animate';
+import { heroui } from '@heroui/theme';
 
-export default {
+const config = {
   darkMode: 'class',
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  prefix: '',
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/@heroui/theme/dist/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -62,153 +46,9 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      keyframes: {
-        'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-        },
-        'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-        'fade-in': {
-          from: {
-            opacity: '0',
-          },
-          to: {
-            opacity: '1',
-          },
-        },
-        'fade-out': {
-          from: {
-            opacity: '1',
-          },
-          to: {
-            opacity: '0',
-          },
-        },
-        'slide-in-from-bottom-4': {
-          from: {
-            transform: 'translateY(16px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateY(0)',
-            opacity: '1',
-          },
-        },
-        'slide-in-from-bottom-6': {
-          from: {
-            transform: 'translateY(24px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateY(0)',
-            opacity: '1',
-          },
-        },
-        'slide-in-from-bottom-8': {
-          from: {
-            transform: 'translateY(32px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateY(0)',
-            opacity: '1',
-          },
-        },
-        'slide-in-from-bottom-10': {
-          from: {
-            transform: 'translateY(40px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateY(0)',
-            opacity: '1',
-          },
-        },
-        'slide-in-from-top-10': {
-          from: {
-            transform: 'translateY(-40px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateY(0)',
-            opacity: '1',
-          },
-        },
-        'slide-in-from-left-4': {
-          from: {
-            transform: 'translateX(-16px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateX(0)',
-            opacity: '1',
-          },
-        },
-        'slide-in-from-right-4': {
-          from: {
-            transform: 'translateX(16px)',
-            opacity: '0',
-          },
-          to: {
-            transform: 'translateX(0)',
-            opacity: '1',
-          },
-        },
-        'pulse-slow': {
-          '0%, 100%': {
-            opacity: '1',
-          },
-          '50%': {
-            opacity: '0.5',
-          },
-        },
-        'ping-slow': {
-          '0%': {
-            transform: 'scale(1)',
-            opacity: '1',
-          },
-          '75%, 100%': {
-            transform: 'scale(1.5)',
-            opacity: '0',
-          },
-        },
-        'bounce-subtle': {
-          '0%, 100%': {
-            transform: 'translateY(0)',
-          },
-          '50%': {
-            transform: 'translateY(-4px)',
-          },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.6s ease-out',
-        'fade-out': 'fade-out 0.6s ease-out',
-        'slide-in-from-bottom-4': 'slide-in-from-bottom-4 0.6s ease-out',
-        'slide-in-from-bottom-6': 'slide-in-from-bottom-6 0.6s ease-out',
-        'slide-in-from-bottom-8': 'slide-in-from-bottom-8 0.6s ease-out',
-        'slide-in-from-bottom-10': 'slide-in-from-bottom-10 0.6s ease-out',
-        'slide-in-from-top-10': 'slide-in-from-top-10 0.6s ease-out',
-        'slide-in-from-left-4': 'slide-in-from-left-4 0.6s ease-out',
-        'slide-in-from-right-4': 'slide-in-from-right-4 0.6s ease-out',
-        'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'ping-slow': 'ping-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-subtle': 'bounce-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [heroui()],
 } satisfies Config;
+
+export default config;

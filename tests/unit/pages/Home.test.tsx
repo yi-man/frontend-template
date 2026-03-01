@@ -42,7 +42,7 @@ describe('Home', () => {
     expect(projectArchitecture?.textContent).toContain('Server Components');
     expect(projectArchitecture?.textContent).toContain('TypeScript');
     expect(projectArchitecture?.textContent).toContain('Tailwind CSS');
-    expect(projectArchitecture?.textContent).toContain('shadcn/ui');
+    expect(projectArchitecture?.textContent).toContain('HeroUI');
     expect(projectArchitecture?.textContent).toContain('Jest + Cypress');
   });
 });

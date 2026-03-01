@@ -1,5 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Card, CardBody, CardHeader } from '@/components/ui';
 import Link from 'next/link';
 
 // 示例博客文章数据
@@ -33,12 +32,12 @@ const blogPosts = [
   },
   {
     id: '4',
-    title: 'shadcn/ui 组件库使用指南',
-    excerpt: '介绍如何使用 shadcn/ui 组件库创建出色的用户界面。',
+    title: 'HeroUI 组件库使用指南',
+    excerpt: '介绍如何使用 HeroUI 组件库创建出色的用户界面。',
     date: '2026-02-12',
     author: '赵六',
     category: 'UI/UX',
-    slug: 'shadcn-ui-guide',
+    slug: 'heroui-guide',
   },
   {
     id: '5',
@@ -81,18 +80,18 @@ export default function Blog() {
                     <span className="text-muted-foreground text-xs">•</span>
                     <span className="text-muted-foreground text-xs">{post.date}</span>
                   </div>
-                  <CardTitle className="text-lg">{post.title}</CardTitle>
-                  <CardDescription>{post.author}</CardDescription>
+                  <h3 className="text-lg font-bold">{post.title}</h3>
+                  <p className="text-sm text-gray-500">{post.author}</p>
                 </CardHeader>
-                <CardContent>
+                <CardBody>
                   <p className="text-muted-foreground">{post.excerpt}</p>
-                </CardContent>
+                </CardBody>
               </Card>
             </Link>
           ))}
         </div>
 
-        <Separator className="my-12" />
+        <div className="my-12 border-t border-gray-200 dark:border-gray-800" />
 
         <div className="text-center">
           <h2 className="mb-4 text-2xl font-bold">订阅我们的博客</h2>
