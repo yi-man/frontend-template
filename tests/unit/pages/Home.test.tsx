@@ -6,7 +6,7 @@ describe('Home', () => {
     render(<Home />);
     const h1 = screen.getByRole('heading', { level: 1 });
     expect(h1).toBeInTheDocument();
-    expect(h1.textContent).toContain('构建现代化Web 应用');
+    expect(h1.textContent).toContain('构建现代化 Web 应用');
   });
 
   it('应该显示快速开始按钮', () => {
@@ -18,7 +18,10 @@ describe('Home', () => {
 
   it('应该显示功能特性卡片', () => {
     render(<Home />);
-    expect(screen.getByText(/强大的功能特性/)).toBeInTheDocument();
+    const featuresSection = screen
+      .getByRole('heading', { level: 2, name: /强大的/ })
+      .closest('section');
+    expect(featuresSection).toBeInTheDocument();
     expect(screen.getAllByText(/极速开发/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/完整技术栈/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/精美设计/).length).toBeGreaterThan(0);
@@ -36,7 +39,7 @@ describe('Home', () => {
 
   it('应该显示项目架构信息', () => {
     render(<Home />);
-    const projectArchitecture = screen.getByText(/项目架构/).closest('.bg-card');
+    const projectArchitecture = screen.getByText(/项目架构/).closest('.hero-ui-card');
     expect(projectArchitecture).toBeInTheDocument();
     expect(projectArchitecture?.textContent).toContain('App Router');
     expect(projectArchitecture?.textContent).toContain('Server Components');
