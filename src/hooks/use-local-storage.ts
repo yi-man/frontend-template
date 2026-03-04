@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   // 用于在客户端组件中安全访问 localStorage 的函数
-  const getStoredValue = (): T => {
+  const getStoredValue = useCallback((): T => {
     if (typeof window === 'undefined') {
       return initialValue;
     }
@@ -16,7 +16,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       console.error(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
-  };
+  }, [key, initialValue]);
 
   const [storedValue, setStoredValue] = useState(getStoredValue);
 
@@ -37,7 +37,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   useEffect(() => {
     setStoredValue(getStoredValue());
-  }, [key]);
+  }, [key, getStoredValue]);
 
   return [storedValue, setValue] as const;
 }
