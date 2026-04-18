@@ -6,7 +6,6 @@
   "installCommand": "bun install --frozen-lockfile",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "regions": ["hnd1", "sin1", "sfo1"],
   "redirects": [],
   "rewrites": [],
   "headers": [
