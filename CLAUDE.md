@@ -170,7 +170,7 @@ export function formatText(text: string): string {
 
 ## 配置文件位置
 
-- **TypeScript**: `tsconfig.json`
+- **TypeScript**: `tsconfig.json`；`bun run type-check` 会额外用 `tsconfig.tests.json` 检查 `**/*.test.*` 与 `bun.setup.tsx`（jest-dom 与 `bun:test` 的匹配器类型见 `types/bun-jest-dom.d.ts`）
 - **Next.js**: `next.config.mjs`
 - **bun:test**: `bunfig.toml`（preload [`bun.setup.tsx`](bun.setup.tsx)）
 - **Cypress**: `cypress.config.ts` 和 `tests/integration/support/e2e.ts`

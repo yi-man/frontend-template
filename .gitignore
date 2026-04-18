@@ -54,6 +54,7 @@ cypress/screenshots
 
 next-env.d.ts
 tsconfig.tsbuildinfo
+tsconfig.tests.tsbuildinfo
 
 # Claude Code local settings
 .claude/settings.local.json

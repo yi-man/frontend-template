@@ -1,3 +1,7 @@
+/**
+ * bun:test preload only. Global mocks for Next.js navigation and lucide-react;
+ * add stub exports here when new icons are used in components under test.
+ */
 import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import '@testing-library/jest-dom';
 import React from 'react';

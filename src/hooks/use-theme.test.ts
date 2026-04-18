@@ -4,7 +4,7 @@ import { useTheme } from './use-theme';
 
 const useNextThemeMock = mock(() => ({
   theme: 'light' as string,
-  setTheme: mock(() => {}),
+  setTheme: mock<(theme: string | ((prev: string) => string)) => void>(() => {}),
 }));
 
 mock.module('next-themes', () => ({
@@ -58,10 +58,12 @@ describe('useTheme Hook', () => {
   });
 
   it('calls setTheme with dark when toggling from light', () => {
-    const setTheme = mock((callback: (prev: string) => string) => callback('light'));
+    const setTheme = mock((theme: string | ((prev: string) => string)) => {
+      if (typeof theme === 'function') theme('light');
+    });
     useNextThemeMock.mockImplementation(() => ({
       theme: 'light',
-      setTheme: setTheme as (value: unknown) => void,
+      setTheme,
     }));
 
     const { result } = renderHook(() => useTheme());
@@ -73,10 +75,12 @@ describe('useTheme Hook', () => {
   });
 
   it('calls setTheme with light when toggling from dark', () => {
-    const setTheme = mock((callback: (prev: string) => string) => callback('dark'));
+    const setTheme = mock((theme: string | ((prev: string) => string)) => {
+      if (typeof theme === 'function') theme('dark');
+    });
     useNextThemeMock.mockImplementation(() => ({
       theme: 'dark',
-      setTheme: setTheme as (value: unknown) => void,
+      setTheme,
     }));
 
     const { result } = renderHook(() => useTheme());
