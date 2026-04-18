@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from 'bun:test';
 import { renderHook, act } from '@testing-library/react';
 import { useThrottle } from './use-throttle';
 

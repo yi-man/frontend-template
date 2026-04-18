@@ -1,3 +1,4 @@
+import { describe, test, expect, beforeEach, jest } from 'bun:test';
 import { renderHook, act } from '@testing-library/react';
 import { useLocalStorage } from './use-local-storage';
 
@@ -116,7 +117,7 @@ describe('useLocalStorage Hook', () => {
 
   test('should handle errors when accessing localStorage', () => {
     // 模拟 localStorage 抛出错误的情况
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
     Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: jest.fn().mockImplementation(() => {

@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from 'bun:test';
 import { renderHook, act } from '@testing-library/react';
 import { useScrollPosition } from './use-scroll-position';
 
@@ -12,17 +13,24 @@ describe('useScrollPosition Hook', () => {
     const testX = 100;
     const testY = 200;
 
-    renderHook(() => useScrollPosition());
+    const { result } = renderHook(() => useScrollPosition());
 
-    // 模拟滚动
     act(() => {
-      window.scrollX = testX;
-      window.scrollY = testY;
+      Object.defineProperty(window, 'scrollX', {
+        value: testX,
+        writable: true,
+        configurable: true,
+      });
+      Object.defineProperty(window, 'scrollY', {
+        value: testY,
+        writable: true,
+        configurable: true,
+      });
       window.dispatchEvent(new Event('scroll'));
     });
 
-    // 这个测试可能无法直接工作，因为 useScrollPosition 是被动监听
-    // 我们需要使用不同的方法来测试 scroll 事件处理
+    expect(result.current.x).toBe(testX);
+    expect(result.current.y).toBe(testY);
   });
 
   it('registers and unregisters scroll event listener', () => {

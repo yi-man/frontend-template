@@ -1,8 +1,8 @@
+import { describe, it, expect, mock } from 'bun:test';
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from '@/components/ui';
 
-// 模拟整个 HeroUI Button 组件，以避免依赖问题
-jest.mock('@heroui/button', () => ({
+mock.module('@heroui/button', () => ({
   Button: ({
     children,
     onClick,
@@ -18,6 +18,8 @@ jest.mock('@heroui/button', () => ({
   ),
 }));
 
+import { Button } from '@/components/ui';
+
 describe('Button', () => {
   it('renders a button with text', () => {
     render(<Button>Click Me</Button>);
@@ -25,7 +27,7 @@ describe('Button', () => {
   });
 
   it('handles click events', () => {
-    const handleClick = jest.fn();
+    const handleClick = mock(() => {});
     render(<Button onClick={handleClick}>Click Me</Button>);
     fireEvent.click(screen.getByRole('button', { name: /click me/i }));
     expect(handleClick).toHaveBeenCalledTimes(1);

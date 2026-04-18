@@ -1,4 +1,13 @@
+import { describe, it, expect, mock } from 'bun:test';
 import { render, screen, fireEvent } from '@testing-library/react';
+
+mock.module('next-themes', () => ({
+  useTheme: () => ({
+    theme: 'light',
+    setTheme: mock(() => {}),
+  }),
+}));
+
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 describe('ThemeToggle', () => {

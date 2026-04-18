@@ -1,35 +1,44 @@
+import { describe, it, expect, mock } from 'bun:test';
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Navbar } from '@/components/navbar';
 
-// 模拟 lucide-react 图标
-jest.mock('lucide-react', () => ({
-  Menu: jest.fn(() => <div data-testid="menu-icon" />),
-  X: jest.fn(() => <div data-testid="x-icon" />),
-  Github: jest.fn(() => <div data-testid="github-icon" />),
+mock.module('next-themes', () => ({
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  useTheme: () => ({ theme: 'light', setTheme: mock(() => {}) }),
 }));
 
-// 模拟 ThemeToggle 组件
-jest.mock('@/components/ui/theme-toggle', () => ({
-  ThemeToggle: jest.fn(() => <button data-testid="theme-toggle-button">Toggle theme</button>),
-}));
-
-// 模拟 Button 组件
-jest.mock('@/components/ui', () => ({
-  Button: jest.fn(({ children, onClick, ...props }) => (
+mock.module('@/components/ui', () => ({
+  Button: ({
+    children,
+    onClick,
+    ...props
+  }: {
+    children: React.ReactNode;
+    onClick?: () => void;
+    [key: string]: unknown;
+  }) => (
     <button onClick={onClick} {...props}>
       {children}
     </button>
-  )),
+  ),
 }));
+
+import { ThemeProvider } from 'next-themes';
+import { Navbar } from '@/components/navbar';
+
+function renderNavbar() {
+  return render(
+    <ThemeProvider attribute="class" defaultTheme="light">
+      <Navbar />
+    </ThemeProvider>,
+  );
+}
 
 describe('Navbar', () => {
   it('should display logo and main navigation links', () => {
-    render(<Navbar />);
+    renderNavbar();
 
-    // 检查是否有 logo 或品牌名称
     expect(screen.getByText('Next.js 16')).toBeInTheDocument();
-
-    // 检查主要导航链接
     expect(screen.getByText('首页')).toBeInTheDocument();
     expect(screen.getByText('服务')).toBeInTheDocument();
     expect(screen.getByText('博客')).toBeInTheDocument();
@@ -38,29 +47,26 @@ describe('Navbar', () => {
   });
 
   it('should render theme toggle button', () => {
-    render(<Navbar />);
+    renderNavbar();
 
-    // ThemeToggle 在导航栏中渲染了两次（桌面端和移动端）
-    const themeButtons = screen.getAllByTestId('theme-toggle-button');
-    expect(themeButtons).toHaveLength(2);
-    themeButtons.forEach((button) => {
-      expect(button).toBeInTheDocument();
+    const themeSwitches = screen.getAllByRole('switch', { name: /切换主题/i });
+    expect(themeSwitches).toHaveLength(2);
+    themeSwitches.forEach((el) => {
+      expect(el).toBeInTheDocument();
     });
   });
 
   it('should render mobile menu button', () => {
-    render(<Navbar />);
+    renderNavbar();
     expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
   });
 
   it('should open mobile menu when button is clicked', () => {
-    render(<Navbar />);
+    renderNavbar();
 
-    // 找到菜单按钮（带有 aria-label="菜单" 的按钮）
     const menuButton = screen.getByRole('button', { name: /菜单/i });
     fireEvent.click(menuButton);
 
-    // 检查是否显示了移动端菜单（会渲染额外的导航链接）
     const homeLinks = screen.getAllByText('首页');
     expect(homeLinks.length).toBe(2);
   });

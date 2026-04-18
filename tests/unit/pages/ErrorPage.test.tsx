@@ -1,7 +1,16 @@
+import { describe, it, expect, beforeEach, afterEach, jest } from 'bun:test';
 import { render, screen } from '@testing-library/react';
 import ErrorPage from '@/app/error';
 
 describe('Error Page', () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('renders error page with basic content', () => {
     const mockError = new Error('测试错误信息');
 

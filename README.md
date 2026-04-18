@@ -9,8 +9,8 @@
 - **TypeScript 5.7** - 类型安全的 JavaScript 超集
 - **Tailwind CSS 4.2.1** - 实用优先的 CSS 框架
 - **shadcn/ui 3.8.5** - 现代化的 UI 组件库
-- **pnpm 10.9.2** - 快速、节省空间的包管理器
-- **Jest** - JavaScript 测试框架
+- **Bun** - 包管理与运行时（`bun install` / `bun run`）
+- **bun:test** - 内置测试运行器（含覆盖率）
 - **Cypress** - 端到端测试工具
 - **ESLint 9.15.0** - 代码规范检查工具
 - **Prettier** - 代码格式化工具
@@ -53,19 +53,19 @@
 
 ### 环境要求
 
-- Node.js 20+
-- pnpm 10.9.2+
+- Node.js 20+（Cypress 等工具链）
+- [Bun](https://bun.sh) 1.x
 
 ### 安装依赖
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### 开发服务器
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 访问 http://localhost:3000 查看应用。
@@ -73,42 +73,38 @@ pnpm dev
 ### 生产构建
 
 ```bash
-pnpm build
+bun run build
 ```
 
 ### 生产服务器
 
 ```bash
-pnpm start
+bun start
 ```
 
 ### 运行测试
 
 ```bash
-# 运行 Jest 测试
-pnpm test
+# 单元测试（bun:test + 覆盖率）
+bun test
 
-# 运行 Jest 测试并监听文件变化
-pnpm test:watch
+# 监听模式
+bun run test:watch
 
-# 运行 Jest 测试并生成覆盖率报告
-pnpm test:coverage
+# CI 用（覆盖率）
+bun run test:ci
 
-# 运行 Cypress 端到端测试
-pnpm cypress
-
-# 运行 Cypress 端到端测试 (无头模式)
-pnpm cypress:headless
+# Cypress 端到端（先起 dev 再跑）
+bun run cypress:open
+bun run cypress:run
+bun run test:e2e
 ```
 
 ### 代码规范检查
 
 ```bash
-# 运行 ESLint 检查
-pnpm lint
-
-# 运行 Prettier 格式化代码
-pnpm format
+bun run lint
+bun run format
 ```
 
 ## 项目结构

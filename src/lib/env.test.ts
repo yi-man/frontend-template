@@ -1,3 +1,4 @@
+import { describe, it, expect, jest } from 'bun:test';
 import { parseEnv, env } from '@/lib/env';
 
 describe('env.ts - 环境变量解析', () => {
@@ -37,7 +38,7 @@ describe('env.ts - 环境变量解析', () => {
 
     it('正确处理无效环境变量（ZodError）', () => {
       // 捕获 console.error 输出
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
       const result = parseEnv({
         NEXT_PUBLIC_APP_URL: 'invalid-url',
@@ -54,7 +55,7 @@ describe('env.ts - 环境变量解析', () => {
 
     it('正确处理非 ZodError 类型的错误', () => {
       // 捕获 console.error 输出
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
       // 创建一个会抛出非 ZodError 的输入
       const invalidInput = Object.create(null, {

@@ -1,13 +1,33 @@
+import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import '@testing-library/jest-dom';
+import React from 'react';
+import { afterEach, mock } from 'bun:test';
 
-jest.mock('next/navigation', () => ({
+GlobalRegistrator.register();
+
+// RTL's cleanup() tears down happy-dom's document in a way that breaks `screen` for the next test.
+afterEach(() => {
+  if (typeof document !== 'undefined' && document.body) {
+    document.body.innerHTML = '';
+  }
+});
+
+globalThis.ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+} as unknown as typeof ResizeObserver;
+
+const router = {
+  push: mock(() => {}),
+  replace: mock(() => {}),
+  refresh: mock(() => {}),
+  back: mock(() => {}),
+};
+
+mock.module('next/navigation', () => ({
   useRouter() {
-    return {
-      push: jest.fn(),
-      replace: jest.fn(),
-      refresh: jest.fn(),
-      back: jest.fn(),
-    };
+    return router;
   },
   usePathname() {
     return '';
@@ -17,17 +37,7 @@ jest.mock('next/navigation', () => ({
   },
 }));
 
-jest.mock('next-themes', () => ({
-  useTheme() {
-    return {
-      theme: 'light',
-      setTheme: jest.fn(),
-    };
-  },
-  ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-}));
-
-jest.mock('lucide-react', () => ({
+mock.module('lucide-react', () => ({
   Menu: () => <div data-testid="menu-icon" />,
   X: () => <div data-testid="x-icon" />,
   Sun: () => <div data-testid="sun-icon" />,
@@ -40,10 +50,5 @@ jest.mock('lucide-react', () => ({
   ChevronDown: () => <div data-testid="chevron-down-icon" />,
   ChevronUp: () => <div data-testid="chevron-up-icon" />,
   Loader2: () => <div data-testid="loader2-icon" />,
-}));
-
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  Github: () => <div data-testid="github-icon" />,
 }));
