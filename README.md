@@ -5,14 +5,14 @@
 ## 技术栈
 
 - **Next.js 16.1.6** - 服务端渲染框架
-- **React 19.2.4** - 用户界面库
+- **React 18.3** - 用户界面库（与 `package.json` 中版本一致）
 - **TypeScript 5.7** - 类型安全的 JavaScript 超集
-- **Tailwind CSS 4.2.1** - 实用优先的 CSS 框架
-- **shadcn/ui 3.8.5** - 现代化的 UI 组件库
-- **pnpm 10.9.2** - 快速、节省空间的包管理器
-- **Jest** - JavaScript 测试框架
+- **Tailwind CSS 4.x** - 实用优先的 CSS 框架
+- **HeroUI**（`@heroui/react` 等）- UI 组件库
+- **Bun** - 包管理与运行时（`bun install` / `bun run`）
+- **bun:test** - 内置测试运行器（含覆盖率）
 - **Cypress** - 端到端测试工具
-- **ESLint 9.15.0** - 代码规范检查工具
+- **ESLint 8.x** - 代码规范检查工具（配置见 `.eslintrc.cjs`）
 - **Prettier** - 代码格式化工具
 - **Husky 9.1.7** - Git 钩子工具
 
@@ -37,8 +37,8 @@
 
 ### UI 组件
 
-- 使用 shadcn/ui 组件库
-- 包含常用的 UI 组件 (按钮、卡片、对话框、表单组件等)
+- 使用 HeroUI 组件（与 Framer Motion、`@heroui/theme` 等配合）
+- 包含常用的 UI 模式（按钮、卡片、对话框、表单等）
 - 主题切换组件
 - 响应式导航栏
 
@@ -53,19 +53,19 @@
 
 ### 环境要求
 
-- Node.js 20+
-- pnpm 10.9.2+
+- Node.js 20+（Cypress 等工具链）
+- [Bun](https://bun.sh) 1.x
 
 ### 安装依赖
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### 开发服务器
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 访问 http://localhost:3000 查看应用。
@@ -73,42 +73,38 @@ pnpm dev
 ### 生产构建
 
 ```bash
-pnpm build
+bun run build
 ```
 
 ### 生产服务器
 
 ```bash
-pnpm start
+bun start
 ```
 
 ### 运行测试
 
 ```bash
-# 运行 Jest 测试
-pnpm test
+# 单元测试（bun:test + 覆盖率）
+bun test
 
-# 运行 Jest 测试并监听文件变化
-pnpm test:watch
+# 监听模式
+bun run test:watch
 
-# 运行 Jest 测试并生成覆盖率报告
-pnpm test:coverage
+# CI 用（覆盖率）
+bun run test:ci
 
-# 运行 Cypress 端到端测试
-pnpm cypress
-
-# 运行 Cypress 端到端测试 (无头模式)
-pnpm cypress:headless
+# Cypress 端到端（先起 dev 再跑）
+bun run cypress:open
+bun run cypress:run
+bun run test:e2e
 ```
 
 ### 代码规范检查
 
 ```bash
-# 运行 ESLint 检查
-pnpm lint
-
-# 运行 Prettier 格式化代码
-pnpm format
+bun run lint
+bun run format
 ```
 
 ## 项目结构
@@ -130,7 +126,7 @@ pnpm format
 │   │   │   └── page.tsx
 │   │   └── globals.css              # 全局样式
 │   ├── components/                  # 可复用组件
-│   │   ├── ui/                      # shadcn/ui 组件
+│   │   ├── ui/                      # UI 封装与共享片段（含 HeroUI）
 │   │   ├── navbar.tsx               # 导航栏组件
 │   │   └── theme-provider.tsx       # 主题提供商
 │   ├── hooks/                       # 自定义 Hooks
@@ -149,12 +145,12 @@ pnpm format
 ├── .env.production                   # 生产环境变量
 ├── .env.test                        # 测试环境变量
 ├── .env.example                     # 环境变量示例
-├── components.json                  # shadcn/ui 配置
-├── eslint.config.mjs                # ESLint 配置
-├── jest.config.cjs                  # Jest 配置
-├── jest.setup.ts                    # Jest 启动文件
+├── .eslintrc.cjs                    # ESLint 配置
+├── bunfig.toml                      # Bun 测试 preload（`bun.setup.tsx`）
+├── bun.setup.tsx                    # bun:test 全局 setup
 ├── next.config.mjs                  # Next.js 配置
-├── package.json                     # 项目依赖配置
+├── package.json                     # 项目依赖与 patchedDependencies
+├── patches/                         # Bun `patchedDependencies`（HeroUI 等）
 ├── postcss.config.js                # PostCSS 配置
 ├── tailwind.config.ts               # Tailwind CSS 配置
 └── tsconfig.json                    # TypeScript 配置
@@ -192,31 +188,9 @@ export function MyComponent({ title }: MyComponentProps) {
 
 使用 Tailwind CSS 类名进行样式开发。
 
-### 数据获取
+### 数据获取（App Router）
 
-使用 Next.js 的数据获取方法：
-
-```typescript
-// 服务器端数据获取
-export async function getServerSideProps() {
-  const data = await fetch('https://api.example.com/data');
-  return { props: { data } };
-}
-
-// 静态数据获取
-export async function getStaticProps() {
-  const data = await fetch('https://api.example.com/data');
-  return { props: { data } };
-}
-
-// 静态路径生成
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { slug: 'post-1' } }, { params: { slug: 'post-2' } }],
-    fallback: false,
-  };
-}
-```
+在 Server Component 中直接使用 `fetch`（或数据源 SDK），必要时配合 `cache` / `revalidate` 等；客户端状态用 Client Component 与 Hooks。详见 [Next.js Data Fetching](https://nextjs.org/docs/app/building-your-application/data-fetching)。
 
 ## 部署
 

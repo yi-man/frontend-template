@@ -1,10 +1,10 @@
+import { describe, test, expect, afterEach, jest } from 'bun:test';
 import { renderHook, act } from '@testing-library/react';
 import { useDebounce } from './use-debounce';
 
 describe('useDebounce Hook', () => {
-  // 清除所有定时器
   afterEach(() => {
-    jest.clearAllTimers();
+    jest.useRealTimers();
   });
 
   test('should return initial value immediately', () => {

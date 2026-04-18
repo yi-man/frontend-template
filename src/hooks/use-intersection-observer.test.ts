@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeEach, afterEach, jest } from 'bun:test';
 import { renderHook } from '@testing-library/react';
 import { useIntersectionObserver } from './use-intersection-observer';
 

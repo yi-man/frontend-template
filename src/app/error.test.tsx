@@ -1,3 +1,4 @@
+import { describe, it, expect, mock } from 'bun:test';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 // 模拟整个 ErrorPage 组件，以避免依赖问题
@@ -36,7 +37,7 @@ const ErrorPage = ({ error, reset }: { error: Error & { digest?: string }; reset
 );
 
 describe('ErrorPage', () => {
-  const mockReset = jest.fn();
+  const mockReset = mock(() => {});
   const mockError = new Error('测试错误信息');
 
   it('renders error message', () => {

@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'bun:test';
 import { render, screen } from '@testing-library/react';
 import Home from '@/app/page';
 
@@ -46,6 +47,6 @@ describe('Home', () => {
     expect(projectArchitecture?.textContent).toContain('TypeScript');
     expect(projectArchitecture?.textContent).toContain('Tailwind CSS');
     expect(projectArchitecture?.textContent).toContain('HeroUI');
-    expect(projectArchitecture?.textContent).toContain('Jest + Cypress');
+    expect(projectArchitecture?.textContent).toContain('bun:test + Cypress');
   });
 });

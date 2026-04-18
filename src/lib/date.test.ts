@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'bun:test';
 import { formatDate, formatRelativeDate, formatDateForSEO, getReadingTime } from '@/lib/date';
 
 describe('date.ts - 日期工具函数', () => {

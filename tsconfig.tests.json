@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "plugins": [],
+    "types": ["bun-types"]
+  },
+  "include": [
+    "types/bun-jest-dom.d.ts",
+    "next-env.d.ts",
+    "bun.setup.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": ["node_modules", "tests/integration"]
+}

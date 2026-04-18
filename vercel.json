@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install",
+  "bunVersion": "1.3.11",
+  "buildCommand": "bun run build",
+  "devCommand": "bun run dev",
+  "installCommand": "bun install --frozen-lockfile",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "regions": ["hnd1", "sin1", "sfo1"],
   "redirects": [],
   "rewrites": [],
   "headers": [

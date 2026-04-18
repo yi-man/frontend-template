@@ -89,8 +89,8 @@ export default function Home() {
               },
               {
                 title: '完整技术栈',
-                description: '集成 React 19、TypeScript 5.7 和 Tailwind CSS 4，构建高质量应用',
-                features: ['React 19', 'TypeScript 5.7', 'Tailwind CSS 4', 'HeroUI'],
+                description: '集成 React 18、TypeScript 5.7 和 Tailwind CSS 4，构建高质量应用',
+                features: ['React 18', 'TypeScript 5.7', 'Tailwind CSS 4', 'HeroUI'],
                 icon: '🚀',
               },
               {
@@ -102,13 +102,13 @@ export default function Home() {
               {
                 title: '代码规范',
                 description: '完整的代码质量保证体系，确保代码风格一致',
-                features: ['ESLint 9', 'Prettier', 'Husky', 'Commitlint'],
+                features: ['ESLint 8', 'Prettier', 'Husky', 'Commitlint'],
                 icon: '✅',
               },
               {
                 title: '工程化配置',
                 description: '生产就绪的配置，包含测试、构建和部署流程',
-                features: ['Jest 测试', 'Cypress E2E', 'CI/CD 配置', '性能优化'],
+                features: ['bun:test 测试', 'Cypress E2E', 'CI/CD 配置', '性能优化'],
                 icon: '🔧',
               },
               {
@@ -164,9 +164,9 @@ export default function Home() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="space-y-8">
               {[
-                { title: '安装依赖', code: 'pnpm install' },
-                { title: '启动开发服务器', code: 'pnpm dev' },
-                { title: '构建生产版本', code: 'pnpm build' },
+                { title: '安装依赖', code: 'bun install' },
+                { title: '启动开发服务器', code: 'bun dev' },
+                { title: '构建生产版本', code: 'bun run build' },
               ].map((step, index) => (
                 <div
                   key={index}
@@ -218,7 +218,7 @@ export default function Home() {
                       { name: 'TypeScript', description: '类型安全' },
                       { name: 'Tailwind CSS', description: '响应式设计' },
                       { name: 'HeroUI', description: '精美组件' },
-                      { name: 'Jest + Cypress', description: '完整测试' },
+                      { name: 'bun:test + Cypress', description: '完整测试' },
                     ].map((item, index) => (
                       <div
                         key={index}

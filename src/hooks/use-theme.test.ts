@@ -1,18 +1,26 @@
+import { describe, it, expect, mock, beforeEach } from 'bun:test';
 import { renderHook, act } from '@testing-library/react';
 import { useTheme } from './use-theme';
-import { useTheme as useNextTheme } from 'next-themes';
 
-// 模拟 next-themes 的 useTheme Hook
-jest.mock('next-themes', () => ({
-  useTheme: jest.fn(),
+const useNextThemeMock = mock(() => ({
+  theme: 'light' as string,
+  setTheme: mock<(theme: string | ((prev: string) => string)) => void>(() => {}),
+}));
+
+mock.module('next-themes', () => ({
+  useTheme: () => useNextThemeMock(),
 }));
 
 describe('useTheme Hook', () => {
+  beforeEach(() => {
+    useNextThemeMock.mockClear?.();
+  });
+
   it('returns theme properties when theme is dark', () => {
-    (useNextTheme as jest.Mock).mockReturnValue({
+    useNextThemeMock.mockImplementation(() => ({
       theme: 'dark',
-      setTheme: jest.fn(),
-    });
+      setTheme: mock(() => {}),
+    }));
 
     const { result } = renderHook(() => useTheme());
     expect(result.current.theme).toBe('dark');
@@ -24,10 +32,10 @@ describe('useTheme Hook', () => {
   });
 
   it('returns theme properties when theme is light', () => {
-    (useNextTheme as jest.Mock).mockReturnValue({
+    useNextThemeMock.mockImplementation(() => ({
       theme: 'light',
-      setTheme: jest.fn(),
-    });
+      setTheme: mock(() => {}),
+    }));
 
     const { result } = renderHook(() => useTheme());
     expect(result.current.theme).toBe('light');
@@ -37,10 +45,10 @@ describe('useTheme Hook', () => {
   });
 
   it('returns theme properties when theme is system', () => {
-    (useNextTheme as jest.Mock).mockReturnValue({
+    useNextThemeMock.mockImplementation(() => ({
       theme: 'system',
-      setTheme: jest.fn(),
-    });
+      setTheme: mock(() => {}),
+    }));
 
     const { result } = renderHook(() => useTheme());
     expect(result.current.theme).toBe('system');
@@ -50,16 +58,13 @@ describe('useTheme Hook', () => {
   });
 
   it('calls setTheme with dark when toggling from light', () => {
-    const setTheme = jest.fn((callback) => {
-      // 模拟 setTheme 执行回调函数
-      if (typeof callback === 'function') {
-        return callback('light');
-      }
+    const setTheme = mock((theme: string | ((prev: string) => string)) => {
+      if (typeof theme === 'function') theme('light');
     });
-    (useNextTheme as jest.Mock).mockReturnValue({
+    useNextThemeMock.mockImplementation(() => ({
       theme: 'light',
       setTheme,
-    });
+    }));
 
     const { result } = renderHook(() => useTheme());
     act(() => {
@@ -70,16 +75,13 @@ describe('useTheme Hook', () => {
   });
 
   it('calls setTheme with light when toggling from dark', () => {
-    const setTheme = jest.fn((callback) => {
-      // 模拟 setTheme 执行回调函数
-      if (typeof callback === 'function') {
-        return callback('dark');
-      }
+    const setTheme = mock((theme: string | ((prev: string) => string)) => {
+      if (typeof theme === 'function') theme('dark');
     });
-    (useNextTheme as jest.Mock).mockReturnValue({
+    useNextThemeMock.mockImplementation(() => ({
       theme: 'dark',
       setTheme,
-    });
+    }));
 
     const { result } = renderHook(() => useTheme());
     act(() => {
@@ -90,11 +92,11 @@ describe('useTheme Hook', () => {
   });
 
   it('calls setTheme with correct value when using setTheme directly', () => {
-    const setTheme = jest.fn();
-    (useNextTheme as jest.Mock).mockReturnValue({
+    const setTheme = mock(() => {});
+    useNextThemeMock.mockImplementation(() => ({
       theme: 'light',
       setTheme,
-    });
+    }));
 
     const { result } = renderHook(() => useTheme());
     const newTheme = 'dark';

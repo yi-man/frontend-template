@@ -1,22 +1,13 @@
+import { describe, it, expect, mock } from 'bun:test';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from './theme-provider';
 
-// 模拟 next-themes 库，避免测试时的依赖问题
-jest.mock('next-themes', () => ({
-  ThemeProvider: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => {
-    return (
-      <div data-testid="theme-provider" {...props}>
-        {children}
-      </div>
-    );
-  },
+mock.module('next-themes', () => ({
+  useTheme: () => ({ theme: 'light', setTheme: mock(() => {}) }),
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
+
+import { ThemeProvider } from './theme-provider';
 
 describe('ThemeProvider', () => {
   it('should render children correctly', () => {

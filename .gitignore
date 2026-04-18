@@ -27,6 +27,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+bun-debug.log*
 lerna-debug.log*
 
 # Local History for Visual Studio Code
@@ -53,6 +54,7 @@ cypress/screenshots
 
 next-env.d.ts
 tsconfig.tsbuildinfo
+tsconfig.tests.tsbuildinfo
 
 # Claude Code local settings
 .claude/settings.local.json

@@ -41,12 +41,12 @@ const blogPosts = [
   },
   {
     id: '5',
-    title: 'React 19 并发渲染',
-    excerpt: '探索 React 19 的并发渲染特性，以及如何在项目中应用这些特性。',
+    title: 'React 18 并发与 Suspense',
+    excerpt: '结合本模板使用的 React 18，理解并发特性与 Suspense 在应用中的典型用法。',
     date: '2026-02-10',
     author: '钱七',
     category: '技术',
-    slug: 'react-19-concurrent-rendering',
+    slug: 'react-18-concurrent-suspense',
   },
   {
     id: '6',

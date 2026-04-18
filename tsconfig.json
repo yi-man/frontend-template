@@ -30,8 +30,7 @@
     "app/**/*.ts",
     "app/**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "jest.setup.tsx"
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "tests/integration", "**/*.test.ts", "**/*.test.tsx", "bun.setup.tsx"]
 }
