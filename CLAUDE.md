@@ -1,12 +1,10 @@
-```
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-```
 
 ## 项目概述
 
-这是一个现代化的 Next.js 16 SSR 模板项目，使用 React 19、TypeScript 5.7、Tailwind CSS 4 和 HeroUI 组件库构建，支持深色/浅色主题切换和响应式设计。项目包含完整的测试配置（bun:test 单元测试 + Cypress 端到端测试）和代码规范工具链；包管理与脚本使用 **Bun**。
+这是一个现代化的 Next.js 16 SSR 模板项目，使用 React 18、TypeScript 5.7、Tailwind CSS 4 和 HeroUI（`@heroui/react` 等）构建，支持深色/浅色主题切换和响应式设计。项目包含完整的测试配置（bun:test 单元测试 + Cypress 端到端测试）和代码规范工具链；包管理与脚本使用 **Bun**。
 
 ## 常用命令
 
@@ -78,7 +76,7 @@ bun run reinstall
 ├── src/
 │   ├── app/                          # Next.js App Router 页面路由
 │   ├── components/                   # 可复用组件
-│   │   ├── ui/                      # shadcn/ui 组件库
+│   │   ├── ui/                      # 可复用 UI（含 HeroUI 封装与共享片段）
 │   │   ├── navbar.tsx               # 导航栏组件
 │   │   └── theme-provider.tsx       # 主题提供商
 │   ├── hooks/                        # 自定义 Hooks
@@ -96,7 +94,7 @@ bun run reinstall
 1. **Next.js 16 App Router**: 使用 App Router 架构，支持服务器组件、客户端组件和布局组件
 2. **主题系统**: 使用 next-themes 实现深色/浅色主题切换，支持系统主题检测
 3. **响应式导航**: 自适应桌面端和移动端的导航栏组件
-4. **组件库**: 使用 shadcn/ui 组件库，基于 Radix UI 和 Tailwind CSS 构建
+4. **组件库**: 使用 [HeroUI](https://www.heroui.com/) 与 Tailwind CSS
 5. **数据获取**: 支持服务器端渲染 (SSR)、静态页面生成 (SSG) 和增量静态再生 (ISR)
 
 ### 测试架构
@@ -120,7 +118,7 @@ export default function NewPage() {
 
 ### 创建新组件
 
-在 `src/components/` 目录下创建新组件，或使用 shadcn/ui 命令添加组件：
+在 `src/components/` 目录下创建新组件；UI 原子组件优先使用 HeroUI 包内导出并在本地按需封装：
 
 ```typescript
 // src/components/MyComponent.tsx
@@ -176,7 +174,7 @@ export function formatText(text: string): string {
 - **Next.js**: `next.config.mjs`
 - **bun:test**: `bunfig.toml`（preload [`bun.setup.tsx`](bun.setup.tsx)）
 - **Cypress**: `cypress.config.ts` 和 `tests/integration/support/e2e.ts`
-- **ESLint**: `eslint.config.mjs`
+- **ESLint**: `.eslintrc.cjs`
 - **Prettier**: `.prettierrc` 和 `.prettierignore`
 - **Tailwind CSS**: `tailwind.config.ts` 和 `postcss.config.js`
 

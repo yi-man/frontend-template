@@ -89,8 +89,8 @@ export default function Home() {
               },
               {
                 title: '完整技术栈',
-                description: '集成 React 19、TypeScript 5.7 和 Tailwind CSS 4，构建高质量应用',
-                features: ['React 19', 'TypeScript 5.7', 'Tailwind CSS 4', 'HeroUI'],
+                description: '集成 React 18、TypeScript 5.7 和 Tailwind CSS 4，构建高质量应用',
+                features: ['React 18', 'TypeScript 5.7', 'Tailwind CSS 4', 'HeroUI'],
                 icon: '🚀',
               },
               {
@@ -102,7 +102,7 @@ export default function Home() {
               {
                 title: '代码规范',
                 description: '完整的代码质量保证体系，确保代码风格一致',
-                features: ['ESLint 9', 'Prettier', 'Husky', 'Commitlint'],
+                features: ['ESLint 8', 'Prettier', 'Husky', 'Commitlint'],
                 icon: '✅',
               },
               {

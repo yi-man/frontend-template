@@ -22,7 +22,6 @@
     "cypress:run": "cypress run",
     "test:e2e": "start-server-and-test 'bun run dev' http://localhost:3000 'bun run cypress:run'",
     "prepare": "husky",
-    "postinstall": "patch-package",
     "clean": "rm -rf .next node_modules coverage",
     "reinstall": "bun run clean && bun install"
   },
@@ -91,7 +90,6 @@
     "globals": "^15.12.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "patch-package": "^8.0.1",
     "prettier": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "start-server-and-test": "^2.0.10",
@@ -99,6 +97,10 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.7.3"
+  },
+  "patchedDependencies": {
+    "@heroui/react-utils@2.1.14": "patches/@heroui__react-utils.patch",
+    "@heroui/use-viewport-size@2.0.1": "patches/@heroui__use-viewport-size.patch"
   },
   "engines": {
     "node": ">=20.0.0",
