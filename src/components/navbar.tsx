@@ -24,6 +24,7 @@ export function Navbar() {
     { name: '关于', href: '/about' },
     { name: '服务', href: '/services' },
     { name: '博客', href: '/blog' },
+    { name: '对话', href: '/chat' },
     { name: '联系', href: '/contact' },
   ];
 

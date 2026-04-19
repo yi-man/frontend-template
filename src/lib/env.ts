@@ -26,6 +26,11 @@ const envSchema = z.object({
 
   // 开发配置
   NEXT_PUBLIC_ENABLE_DEBUG: z.coerce.boolean().default(false),
+
+  // OpenAI 兼容 API（LangChain / 聊天演示；未配置时接口返回演示流）
+  OPENAI_API_KEY: z.string().optional(),
+  OPENAI_BASE_URL: z.string().default('https://api.openai.com/v1'),
+  OPENAI_MODEL: z.string().default('gpt-4o-mini'),
 });
 
 type Env = z.infer<typeof envSchema>;
