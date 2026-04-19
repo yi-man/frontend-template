@@ -178,6 +178,7 @@ export function formatText(text: string): string {
 - **ESLint**: `.eslintrc.cjs`
 - **Prettier**: `.prettierrc` 和 `.prettierignore`
 - **Tailwind CSS**: `tailwind.config.ts` 和 `postcss.config.js`
+- **环境变量**: `src/lib/env.ts`（Zod 解析；**仅声明代码中实际读取的变量**：`fetch` 与聊天演示相关）
 
 ## 重要说明
 
