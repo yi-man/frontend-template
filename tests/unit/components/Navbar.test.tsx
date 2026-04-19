@@ -43,6 +43,7 @@ describe('Navbar', () => {
     expect(screen.getByText('服务')).toBeInTheDocument();
     expect(screen.getByText('博客')).toBeInTheDocument();
     expect(screen.getByText('关于')).toBeInTheDocument();
+    expect(screen.getByText('对话')).toBeInTheDocument();
     expect(screen.getByText('联系')).toBeInTheDocument();
   });
 

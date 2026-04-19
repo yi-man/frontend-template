@@ -48,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         { name: '关于', href: '/about' },
                         { name: '服务', href: '/services' },
                         { name: '博客', href: '/blog' },
+                        { name: '对话', href: '/chat' },
                         { name: '联系', href: '/contact' },
                       ].map((item, index) => (
                         <li key={index}>

@@ -80,7 +80,7 @@ bun run reinstall
 │   │   ├── navbar.tsx               # 导航栏组件
 │   │   └── theme-provider.tsx       # 主题提供商
 │   ├── hooks/                        # 自定义 Hooks
-│   ├── lib/                         # 工具函数和工具库
+│   ├── lib/                         # 工具函数和工具库（含 `lib/llm/` LangChain + LangGraph 演示）
 │   └── types/                       # TypeScript 类型定义
 ├── tests/                           # 测试文件目录
 │   ├── integration/e2e/            # Playwright 端到端测试（*.spec.ts）
@@ -96,6 +96,7 @@ bun run reinstall
 3. **响应式导航**: 自适应桌面端和移动端的导航栏组件
 4. **组件库**: 使用 [HeroUI](https://www.heroui.com/) 与 Tailwind CSS
 5. **数据获取**: 支持服务器端渲染 (SSR)、静态页面生成 (SSG) 和增量静态再生 (ISR)
+6. **大模型演示（无持久化）**: 页面 `/chat` 使用 **Vercel AI SDK**（`@ai-sdk/react` 的 `useChat`）；服务端 `POST /api/chat` 使用 **LangChain** `ChatOpenAI` 与 **LangGraph** `StateGraph`（`MessagesAnnotation`）编排，将 UI 消息转为模型流并返回 AI SDK UI 流。需在 `.env.local` 配置 `OPENAI_API_KEY`（及可选 `OPENAI_BASE_URL` / `OPENAI_MODEL`）；未配置时返回演示提示文案流。
 
 ### 测试架构
 
@@ -177,6 +178,7 @@ export function formatText(text: string): string {
 - **ESLint**: `.eslintrc.cjs`
 - **Prettier**: `.prettierrc` 和 `.prettierignore`
 - **Tailwind CSS**: `tailwind.config.ts` 和 `postcss.config.js`
+- **环境变量**: `src/lib/env.ts`（Zod 解析；**仅声明代码中实际读取的变量**：`fetch` 与聊天演示相关）
 
 ## 重要说明
 
