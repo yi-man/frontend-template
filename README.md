@@ -11,7 +11,7 @@
 - **HeroUI**（`@heroui/react` 等）- UI 组件库
 - **Bun** - 包管理与运行时（`bun install` / `bun run`）
 - **bun:test** - 内置测试运行器（含覆盖率）
-- **Cypress** - 端到端测试工具
+- **Playwright** - 端到端测试工具
 - **ESLint 8.x** - 代码规范检查工具（配置见 `.eslintrc.cjs`）
 - **Prettier** - 代码格式化工具
 - **Husky 9.1.7** - Git 钩子工具
@@ -53,7 +53,7 @@
 
 ### 环境要求
 
-- Node.js 20+（Cypress 等工具链）
+- Node.js 20+（Playwright 等工具链）
 - [Bun](https://bun.sh) 1.x
 
 ### 安装依赖
@@ -94,9 +94,9 @@ bun run test:watch
 # CI 用（覆盖率）
 bun run test:ci
 
-# Cypress 端到端（先起 dev 再跑）
-bun run cypress:open
-bun run cypress:run
+# Playwright 端到端（配置会自动启动 dev；首次需安装浏览器）
+bun run playwright:install
+bun run playwright:ui
 bun run test:e2e
 ```
 

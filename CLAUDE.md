@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-这是一个现代化的 Next.js 16 SSR 模板项目，使用 React 18、TypeScript 5.7、Tailwind CSS 4 和 HeroUI（`@heroui/react` 等）构建，支持深色/浅色主题切换和响应式设计。项目包含完整的测试配置（bun:test 单元测试 + Cypress 端到端测试）和代码规范工具链；包管理与脚本使用 **Bun**。
+这是一个现代化的 Next.js 16 SSR 模板项目，使用 React 18、TypeScript 5.7、Tailwind CSS 4 和 HeroUI（`@heroui/react` 等）构建，支持深色/浅色主题切换和响应式设计。项目包含完整的测试配置（bun:test 单元测试 + Playwright 端到端测试）和代码规范工具链；包管理与脚本使用 **Bun**。
 
 ## 常用命令
 
@@ -48,13 +48,13 @@ bun run test:watch
 # CI 环境测试
 bun run test:ci
 
-# 打开 Cypress 测试界面
-bun run cypress:open
+# 安装 Playwright 浏览器（首次克隆或升级后）
+bun run playwright:install
 
-# 运行 Cypress 测试 (无头模式)
-bun run cypress:run
+# Playwright UI 模式
+bun run playwright:ui
 
-# 启动开发服务器并运行 Cypress 测试
+# 端到端测试（由配置自动拉起 dev 服务）
 bun run test:e2e
 ```
 
@@ -83,7 +83,7 @@ bun run reinstall
 │   ├── lib/                         # 工具函数和工具库
 │   └── types/                       # TypeScript 类型定义
 ├── tests/                           # 测试文件目录
-│   ├── integration/                # Cypress 端到端测试
+│   ├── integration/e2e/            # Playwright 端到端测试（*.spec.ts）
 │   └── unit/                       # bun:test 单元测试
 ├── public/                          # 静态资源
 └── 配置文件
@@ -100,7 +100,7 @@ bun run reinstall
 ### 测试架构
 
 - **单元测试**: 使用 bun:test 与 React Testing Library，测试文件位于 `src/**/*.test.tsx` 和 `tests/unit/**/*.test.tsx`
-- **端到端测试**: 使用 Cypress，测试文件位于 `tests/integration/e2e/**/*.cy.ts`
+- **端到端测试**: 使用 Playwright，测试文件位于 `tests/integration/e2e/**/*.spec.ts`
 - **覆盖率要求**: 目标覆盖率为 90% 以上（当前配置为基础阈值）
 
 ## 开发指南
@@ -172,8 +172,8 @@ export function formatText(text: string): string {
 
 - **TypeScript**: `tsconfig.json`；`bun run type-check` 会额外用 `tsconfig.tests.json` 检查 `**/*.test.*` 与 `bun.setup.tsx`（jest-dom 与 `bun:test` 的匹配器类型见 `types/bun-jest-dom.d.ts`）
 - **Next.js**: `next.config.mjs`
-- **bun:test**: `bunfig.toml`（preload [`bun.setup.tsx`](bun.setup.tsx)）
-- **Cypress**: `cypress.config.ts` 和 `tests/integration/support/e2e.ts`
+- **bun:test**: `bunfig.toml`（preload [`bun.setup.tsx`](bun.setup.tsx)；`pathIgnorePatterns` 排除 `tests/integration/e2e/**`，避免与 Playwright 的 `*.spec.ts` 冲突）
+- **Playwright**: `playwright.config.ts`（`tests/integration/e2e/**/*.spec.ts`）
 - **ESLint**: `.eslintrc.cjs`
 - **Prettier**: `.prettierrc` 和 `.prettierignore`
 - **Tailwind CSS**: `tailwind.config.ts` 和 `postcss.config.js`
