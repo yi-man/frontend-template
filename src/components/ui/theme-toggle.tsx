@@ -16,5 +16,13 @@ export function ThemeToggle() {
     setTheme(isDark ? 'light' : 'dark');
   };
 
-  return <Switch checked={isDark} onChange={handleToggle} size="sm" aria-label="切换主题" />;
+  return (
+    <Switch
+      checked={isDark}
+      onChange={handleToggle}
+      size="sm"
+      aria-label="切换主题"
+      data-testid="theme-toggle"
+    />
+  );
 }

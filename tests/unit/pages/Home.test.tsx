@@ -47,6 +47,6 @@ describe('Home', () => {
     expect(projectArchitecture?.textContent).toContain('TypeScript');
     expect(projectArchitecture?.textContent).toContain('Tailwind CSS');
     expect(projectArchitecture?.textContent).toContain('HeroUI');
-    expect(projectArchitecture?.textContent).toContain('bun:test + Cypress');
+    expect(projectArchitecture?.textContent).toContain('bun:test + Playwright');
   });
 });

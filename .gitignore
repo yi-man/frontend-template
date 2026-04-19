@@ -45,8 +45,9 @@ lerna-debug.log*
 *.sw?
 
 # Testing
-cypress/videos
-cypress/screenshots
+test-results/
+playwright-report/
+blob-report/
 
 # Temporary files created by CLI tools
 *.tmp
